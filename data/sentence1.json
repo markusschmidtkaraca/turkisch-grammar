@@ -2823,6 +2823,281 @@
               "description": "Verneinung Hoerensagen"
             }
           ]
+        },
+        "adverb_groups": {
+          "selected_group": "alltag",
+          "groups": {
+            "alltag": {
+              "label": "Alltag",
+              "items": [
+                {
+                  "stem": "yap",
+                  "full_word": "yaptı",
+                  "meaning": "machte (machen)"
+                },
+                {
+                  "stem": "gel",
+                  "full_word": "geldi",
+                  "meaning": "kam (kommen)"
+                },
+                {
+                  "stem": "git",
+                  "full_word": "gitti",
+                  "meaning": "ging (gehen)"
+                },
+                {
+                  "stem": "al",
+                  "full_word": "aldı",
+                  "meaning": "nahm (nehmen)"
+                },
+                {
+                  "stem": "ver",
+                  "full_word": "verdi",
+                  "meaning": "gab (geben)"
+                },
+                {
+                  "stem": "ye",
+                  "full_word": "yedi",
+                  "meaning": "aß (essen)"
+                },
+                {
+                  "stem": "iç",
+                  "full_word": "içti",
+                  "meaning": "trank (trinken)"
+                },
+                {
+                  "stem": "uyu",
+                  "full_word": "uyudu",
+                  "meaning": "schlief (schlafen)"
+                }
+              ]
+            },
+            "kommunikation": {
+              "label": "Kommunikation",
+              "items": [
+                {
+                  "stem": "söyle",
+                  "full_word": "söyledi",
+                  "meaning": "sagte (sagen)"
+                },
+                {
+                  "stem": "konuş",
+                  "full_word": "konuştu",
+                  "meaning": "sprach (sprechen)"
+                },
+                {
+                  "stem": "sor",
+                  "full_word": "sordu",
+                  "meaning": "fragte (fragen)"
+                },
+                {
+                  "stem": "anlat",
+                  "full_word": "anlattı",
+                  "meaning": "erzählte (erzählen)"
+                },
+                {
+                  "stem": "yaz",
+                  "full_word": "yazdı",
+                  "meaning": "schrieb (schreiben)"
+                },
+                {
+                  "stem": "oku",
+                  "full_word": "okudu",
+                  "meaning": "las (lesen)"
+                },
+                {
+                  "stem": "dinle",
+                  "full_word": "dinledi",
+                  "meaning": "hörte zu (zuhören)"
+                },
+                {
+                  "stem": "ara",
+                  "full_word": "aradı",
+                  "meaning": "rief an (anrufen)"
+                }
+              ]
+            },
+            "bewegung": {
+              "label": "Bewegung",
+              "items": [
+                {
+                  "stem": "koş",
+                  "full_word": "koştu",
+                  "meaning": "rannte (rennen)"
+                },
+                {
+                  "stem": "yürü",
+                  "full_word": "yürüdü",
+                  "meaning": "lief (laufen)"
+                },
+                {
+                  "stem": "otur",
+                  "full_word": "oturdu",
+                  "meaning": "saß (sitzen)"
+                },
+                {
+                  "stem": "kalk",
+                  "full_word": "kalktı",
+                  "meaning": "stand auf (aufstehen)"
+                },
+                {
+                  "stem": "dön",
+                  "full_word": "döndü",
+                  "meaning": "drehte/kehrte (drehen)"
+                },
+                {
+                  "stem": "bin",
+                  "full_word": "bindi",
+                  "meaning": "stieg ein (einsteigen)"
+                },
+                {
+                  "stem": "in",
+                  "full_word": "indi",
+                  "meaning": "stieg aus (aussteigen)"
+                },
+                {
+                  "stem": "dur",
+                  "full_word": "durdu",
+                  "meaning": "hielt an (anhalten)"
+                }
+              ]
+            },
+            "gefuehle": {
+              "label": "Gefühle",
+              "items": [
+                {
+                  "stem": "sev",
+                  "full_word": "sevdi",
+                  "meaning": "liebte (lieben)"
+                },
+                {
+                  "stem": "iste",
+                  "full_word": "istedi",
+                  "meaning": "wollte (wollen)"
+                },
+                {
+                  "stem": "beğen",
+                  "full_word": "beğendi",
+                  "meaning": "mochte (mögen)"
+                },
+                {
+                  "stem": "kork",
+                  "full_word": "korktu",
+                  "meaning": "fürchtete (fürchten)"
+                },
+                {
+                  "stem": "üzül",
+                  "full_word": "üzüldü",
+                  "meaning": "war traurig"
+                },
+                {
+                  "stem": "sevin",
+                  "full_word": "sevindi",
+                  "meaning": "freute sich"
+                },
+                {
+                  "stem": "kız",
+                  "full_word": "kızdı",
+                  "meaning": "war wütend"
+                },
+                {
+                  "stem": "güven",
+                  "full_word": "güvendi",
+                  "meaning": "vertraute (vertrauen)"
+                }
+              ]
+            },
+            "arbeit": {
+              "label": "Arbeit/Lernen",
+              "items": [
+                {
+                  "stem": "çalış",
+                  "full_word": "çalıştı",
+                  "meaning": "arbeitete (arbeiten)"
+                },
+                {
+                  "stem": "öğren",
+                  "full_word": "öğrendi",
+                  "meaning": "lernte (lernen)"
+                },
+                {
+                  "stem": "öğret",
+                  "full_word": "öğretti",
+                  "meaning": "lehrte (lehren)"
+                },
+                {
+                  "stem": "başla",
+                  "full_word": "başladı",
+                  "meaning": "begann (beginnen)"
+                },
+                {
+                  "stem": "bitir",
+                  "full_word": "bitirdi",
+                  "meaning": "beendete (beenden)"
+                },
+                {
+                  "stem": "dene",
+                  "full_word": "denedi",
+                  "meaning": "versuchte (versuchen)"
+                },
+                {
+                  "stem": "bul",
+                  "full_word": "buldu",
+                  "meaning": "fand (finden)"
+                },
+                {
+                  "stem": "düşün",
+                  "full_word": "düşündü",
+                  "meaning": "dachte (denken)"
+                }
+              ]
+            },
+            "haushalt": {
+              "label": "Haushalt",
+              "items": [
+                {
+                  "stem": "aç",
+                  "full_word": "açtı",
+                  "meaning": "öffnete (öffnen)"
+                },
+                {
+                  "stem": "kapat",
+                  "full_word": "kapattı",
+                  "meaning": "schloss (schließen)"
+                },
+                {
+                  "stem": "yıka",
+                  "full_word": "yıkadı",
+                  "meaning": "wusch (waschen)"
+                },
+                {
+                  "stem": "pişir",
+                  "full_word": "pişirdi",
+                  "meaning": "kochte (kochen)"
+                },
+                {
+                  "stem": "temizle",
+                  "full_word": "temizledi",
+                  "meaning": "putzte (putzen)"
+                },
+                {
+                  "stem": "taşı",
+                  "full_word": "taşıdı",
+                  "meaning": "trug (tragen)"
+                },
+                {
+                  "stem": "koy",
+                  "full_word": "koydu",
+                  "meaning": "legte/stellte (legen)"
+                },
+                {
+                  "stem": "sat",
+                  "full_word": "sattı",
+                  "meaning": "verkaufte (verkaufen)"
+                }
+              ]
+            }
+          }
         }
       }
     ]

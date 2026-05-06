@@ -647,6 +647,16 @@ function applyPossessive(wordIdx, ownerIdx, possessionIdx) {
 function applyAdverb(wordIdx, stem, fullWord, meaning) {
     var word = currentSentence.words[wordIdx];
     word.stem = stem; word.full_word = fullWord; word.meaning = meaning;
+    // For verbs: clear conjugation and rebuild with current tense/person
+    if (word.role === 'Verb' && stem) {
+        if (word.conjugation) {
+            var testForm = word.conjugation['di'] && word.conjugation['di']['3sg'];
+            if (testForm && testForm.full_word && testForm.full_word.indexOf(stem) !== 0) {
+                word.conjugation = null;
+            }
+        }
+        rebuildVerbWord(word);
+    }
     renderSentence(currentSentence);
 }
 
