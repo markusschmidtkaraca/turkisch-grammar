@@ -1,0 +1,2830 @@
+{
+  "sentence": {
+    "description": "Der Junge gab dem Mädchen von zu Hause in der Schule das Buch.",
+    "language": "tr",
+    "words": [
+      {
+        "role": "Subjekt",
+        "role_de": "Subjekt",
+        "full_word": "",
+        "stem": "",
+        "suffixes": [],
+        "meaning": "(kein Wort)",
+        "person": "1sg",
+        "stem_alternatives": [
+          {
+            "stem": "",
+            "full_word": "",
+            "meaning": "(kein Wort)",
+            "person": "3sg"
+          },
+          {
+            "stem": "Çocuk",
+            "full_word": "Çocuk",
+            "meaning": "das Kind / der Junge",
+            "person": "3sg"
+          },
+          {
+            "stem": "Adam",
+            "full_word": "Adam",
+            "meaning": "der Mann",
+            "person": "3sg"
+          },
+          {
+            "stem": "Kadın",
+            "full_word": "Kadın",
+            "meaning": "die Frau",
+            "person": "3sg"
+          },
+          {
+            "stem": "Öğretmen",
+            "full_word": "Öğretmen",
+            "meaning": "der Lehrer",
+            "person": "3sg"
+          },
+          {
+            "stem": "Anne",
+            "full_word": "Anne",
+            "meaning": "die Mutter",
+            "person": "3sg"
+          },
+          {
+            "stem": "Baba",
+            "full_word": "Baba",
+            "meaning": "der Vater",
+            "person": "3sg"
+          },
+          {
+            "stem": "Ben",
+            "full_word": "Ben",
+            "meaning": "ich (Pronomen)",
+            "person": "1sg"
+          },
+          {
+            "stem": "Sen",
+            "full_word": "Sen",
+            "meaning": "du (Pronomen)",
+            "person": "2sg"
+          },
+          {
+            "stem": "O",
+            "full_word": "O",
+            "meaning": "er/sie/es (Pronomen)",
+            "person": "3sg"
+          },
+          {
+            "stem": "Biz",
+            "full_word": "Biz",
+            "meaning": "wir (Pronomen)",
+            "person": "1pl"
+          },
+          {
+            "stem": "Siz",
+            "full_word": "Siz",
+            "meaning": "ihr/Sie (Pronomen)",
+            "person": "2pl"
+          },
+          {
+            "stem": "Onlar",
+            "full_word": "Onlar",
+            "meaning": "sie (Plural, Pronomen)",
+            "person": "3pl"
+          }
+        ],
+        "variations": [
+          {
+            "full_word": "",
+            "stem": "",
+            "meaning": "(kein Wort)",
+            "description": "Subjekt weglassen",
+            "person": "3sg"
+          },
+          {
+            "full_word": "Çocuk",
+            "stem": "Çocuk",
+            "meaning": "das Kind / der Junge",
+            "description": "Substantiv",
+            "person": "3sg"
+          },
+          {
+            "full_word": "Ben",
+            "stem": "Ben",
+            "meaning": "ich",
+            "description": "1. Person Singular",
+            "person": "1sg"
+          },
+          {
+            "full_word": "Sen",
+            "stem": "Sen",
+            "meaning": "du",
+            "description": "2. Person Singular",
+            "person": "2sg"
+          },
+          {
+            "full_word": "O",
+            "stem": "O",
+            "meaning": "er / sie / es",
+            "description": "3. Person Singular",
+            "person": "3sg"
+          },
+          {
+            "full_word": "Biz",
+            "stem": "Biz",
+            "meaning": "wir",
+            "description": "1. Person Plural",
+            "person": "1pl"
+          },
+          {
+            "full_word": "Siz",
+            "stem": "Siz",
+            "meaning": "ihr / Sie",
+            "description": "2. Person Plural",
+            "person": "2pl"
+          },
+          {
+            "full_word": "Onlar",
+            "stem": "Onlar",
+            "meaning": "sie (Plural)",
+            "description": "3. Person Plural",
+            "person": "3pl"
+          }
+        ],
+        "possessive": {
+          "active": false,
+          "owners": [
+            {
+              "stem": "çocuk",
+              "suffix": "-un",
+              "genitive": "çocuğun",
+              "meaning": "des Kindes"
+            },
+            {
+              "stem": "kız",
+              "suffix": "-ın",
+              "genitive": "kızın",
+              "meaning": "des Mädchens"
+            },
+            {
+              "stem": "adam",
+              "suffix": "-ın",
+              "genitive": "adamın",
+              "meaning": "des Mannes"
+            },
+            {
+              "stem": "öğretmen",
+              "suffix": "-in",
+              "genitive": "öğretmenin",
+              "meaning": "des Lehrers"
+            },
+            {
+              "stem": "anne",
+              "suffix": "-nin",
+              "genitive": "annenin",
+              "meaning": "der Mutter"
+            },
+            {
+              "stem": "baba",
+              "suffix": "-nın",
+              "genitive": "babanın",
+              "meaning": "des Vaters"
+            },
+            {
+              "stem": "ben",
+              "suffix": "-im",
+              "genitive": "benim",
+              "meaning": "mein(e)"
+            },
+            {
+              "stem": "sen",
+              "suffix": "-in",
+              "genitive": "senin",
+              "meaning": "dein(e)"
+            },
+            {
+              "stem": "o",
+              "suffix": "-nun",
+              "genitive": "onun",
+              "meaning": "sein(e)/ihr(e)"
+            },
+            {
+              "stem": "biz",
+              "suffix": "-im",
+              "genitive": "bizim",
+              "meaning": "unser(e)"
+            },
+            {
+              "stem": "siz",
+              "suffix": "-in",
+              "genitive": "sizin",
+              "meaning": "euer/Ihr(e)"
+            },
+            {
+              "stem": "onlar",
+              "suffix": "-ın",
+              "genitive": "onların",
+              "meaning": "ihr(e) (Plural)"
+            }
+          ],
+          "possessions": [
+            {
+              "stem": "anne",
+              "suffix": "-si",
+              "possessed": "annesi",
+              "meaning": "Mutter"
+            },
+            {
+              "stem": "baba",
+              "suffix": "-sı",
+              "possessed": "babası",
+              "meaning": "Vater"
+            },
+            {
+              "stem": "araba",
+              "suffix": "-sı",
+              "possessed": "arabası",
+              "meaning": "Auto"
+            },
+            {
+              "stem": "ev",
+              "suffix": "-i",
+              "possessed": "evi",
+              "meaning": "Haus"
+            },
+            {
+              "stem": "kitap",
+              "suffix": "-ı",
+              "possessed": "kitabı",
+              "meaning": "Buch"
+            },
+            {
+              "stem": "arkadaş",
+              "suffix": "-ı",
+              "possessed": "arkadaşı",
+              "meaning": "Freund"
+            },
+            {
+              "stem": "öğretmen",
+              "suffix": "-i",
+              "possessed": "öğretmeni",
+              "meaning": "Lehrer"
+            },
+            {
+              "stem": "kapı",
+              "suffix": "-sı",
+              "possessed": "kapısı",
+              "meaning": "Tür"
+            },
+            {
+              "stem": "çocuk",
+              "suffix": "-u",
+              "possessed": "çocuğu",
+              "meaning": "Kind"
+            }
+          ],
+          "selected_owner": 0,
+          "selected_possession": 0
+        },
+        "adverb_groups": {
+          "selected_group": "personen",
+          "groups": {
+            "personen": {
+              "label": "Personen",
+              "items": [
+                {
+                  "stem": "çocuk",
+                  "full_word": "çocuk",
+                  "meaning": "Kind"
+                },
+                {
+                  "stem": "adam",
+                  "full_word": "adam",
+                  "meaning": "Mann"
+                },
+                {
+                  "stem": "kadın",
+                  "full_word": "kadın",
+                  "meaning": "Frau"
+                },
+                {
+                  "stem": "kız",
+                  "full_word": "kız",
+                  "meaning": "Mädchen"
+                },
+                {
+                  "stem": "oğlan",
+                  "full_word": "oğlan",
+                  "meaning": "Junge"
+                },
+                {
+                  "stem": "öğretmen",
+                  "full_word": "öğretmen",
+                  "meaning": "Lehrer"
+                },
+                {
+                  "stem": "doktor",
+                  "full_word": "doktor",
+                  "meaning": "Arzt"
+                },
+                {
+                  "stem": "öğrenci",
+                  "full_word": "öğrenci",
+                  "meaning": "Schüler"
+                }
+              ]
+            },
+            "familie": {
+              "label": "Familie",
+              "items": [
+                {
+                  "stem": "anne",
+                  "full_word": "anne",
+                  "meaning": "Mutter"
+                },
+                {
+                  "stem": "baba",
+                  "full_word": "baba",
+                  "meaning": "Vater"
+                },
+                {
+                  "stem": "kardeş",
+                  "full_word": "kardeş",
+                  "meaning": "Geschwister"
+                },
+                {
+                  "stem": "abla",
+                  "full_word": "abla",
+                  "meaning": "ältere Schwester"
+                },
+                {
+                  "stem": "ağabey",
+                  "full_word": "ağabey",
+                  "meaning": "älterer Bruder"
+                },
+                {
+                  "stem": "dede",
+                  "full_word": "dede",
+                  "meaning": "Großvater"
+                },
+                {
+                  "stem": "nine",
+                  "full_word": "nine",
+                  "meaning": "Großmutter"
+                },
+                {
+                  "stem": "arkadaş",
+                  "full_word": "arkadaş",
+                  "meaning": "Freund"
+                }
+              ]
+            },
+            "gegenstaende": {
+              "label": "Gegenstände",
+              "items": [
+                {
+                  "stem": "kitap",
+                  "full_word": "kitap",
+                  "meaning": "Buch"
+                },
+                {
+                  "stem": "kalem",
+                  "full_word": "kalem",
+                  "meaning": "Stift"
+                },
+                {
+                  "stem": "masa",
+                  "full_word": "masa",
+                  "meaning": "Tisch"
+                },
+                {
+                  "stem": "sandalye",
+                  "full_word": "sandalye",
+                  "meaning": "Stuhl"
+                },
+                {
+                  "stem": "telefon",
+                  "full_word": "telefon",
+                  "meaning": "Telefon"
+                },
+                {
+                  "stem": "bilgisayar",
+                  "full_word": "bilgisayar",
+                  "meaning": "Computer"
+                },
+                {
+                  "stem": "araba",
+                  "full_word": "araba",
+                  "meaning": "Auto"
+                },
+                {
+                  "stem": "anahtar",
+                  "full_word": "anahtar",
+                  "meaning": "Schlüssel"
+                }
+              ]
+            },
+            "orte": {
+              "label": "Orte",
+              "items": [
+                {
+                  "stem": "ev",
+                  "full_word": "ev",
+                  "meaning": "Haus"
+                },
+                {
+                  "stem": "okul",
+                  "full_word": "okul",
+                  "meaning": "Schule"
+                },
+                {
+                  "stem": "park",
+                  "full_word": "park",
+                  "meaning": "Park"
+                },
+                {
+                  "stem": "hastane",
+                  "full_word": "hastane",
+                  "meaning": "Krankenhaus"
+                },
+                {
+                  "stem": "market",
+                  "full_word": "market",
+                  "meaning": "Supermarkt"
+                },
+                {
+                  "stem": "restoran",
+                  "full_word": "restoran",
+                  "meaning": "Restaurant"
+                },
+                {
+                  "stem": "şehir",
+                  "full_word": "şehir",
+                  "meaning": "Stadt"
+                },
+                {
+                  "stem": "köy",
+                  "full_word": "köy",
+                  "meaning": "Dorf"
+                }
+              ]
+            },
+            "nahrung": {
+              "label": "Nahrung",
+              "items": [
+                {
+                  "stem": "ekmek",
+                  "full_word": "ekmek",
+                  "meaning": "Brot"
+                },
+                {
+                  "stem": "su",
+                  "full_word": "su",
+                  "meaning": "Wasser"
+                },
+                {
+                  "stem": "çay",
+                  "full_word": "çay",
+                  "meaning": "Tee"
+                },
+                {
+                  "stem": "yemek",
+                  "full_word": "yemek",
+                  "meaning": "Essen"
+                },
+                {
+                  "stem": "meyve",
+                  "full_word": "meyve",
+                  "meaning": "Obst"
+                },
+                {
+                  "stem": "sebze",
+                  "full_word": "sebze",
+                  "meaning": "Gemüse"
+                },
+                {
+                  "stem": "et",
+                  "full_word": "et",
+                  "meaning": "Fleisch"
+                },
+                {
+                  "stem": "süt",
+                  "full_word": "süt",
+                  "meaning": "Milch"
+                }
+              ]
+            },
+            "abstrakta": {
+              "label": "Abstrakt",
+              "items": [
+                {
+                  "stem": "para",
+                  "full_word": "para",
+                  "meaning": "Geld"
+                },
+                {
+                  "stem": "iş",
+                  "full_word": "iş",
+                  "meaning": "Arbeit"
+                },
+                {
+                  "stem": "zaman",
+                  "full_word": "zaman",
+                  "meaning": "Zeit"
+                },
+                {
+                  "stem": "hediye",
+                  "full_word": "hediye",
+                  "meaning": "Geschenk"
+                },
+                {
+                  "stem": "haber",
+                  "full_word": "haber",
+                  "meaning": "Nachricht"
+                },
+                {
+                  "stem": "mektup",
+                  "full_word": "mektup",
+                  "meaning": "Brief"
+                },
+                {
+                  "stem": "soru",
+                  "full_word": "soru",
+                  "meaning": "Frage"
+                },
+                {
+                  "stem": "cevap",
+                  "full_word": "cevap",
+                  "meaning": "Antwort"
+                }
+              ]
+            }
+          }
+        }
+      },
+      {
+        "role": "Herkunftsangabe",
+        "role_de": "Herkunftsangabe (Ablativ)",
+        "full_word": "",
+        "stem": "",
+        "suffixes": [
+          {
+            "suffix": "-den",
+            "function": "Ablativ-Suffix",
+            "description": "Herkunft/Ausgangspunkt (woher?)",
+            "variations": [
+              {
+                "suffix": "-dan/-den/-tan/-ten",
+                "function": "Ablativ",
+                "full_word": "evden",
+                "meaning": "von zu Hause (woher?)",
+                "description": "Ablativ"
+              },
+              {
+                "suffix": "-da/-de/-ta/-te",
+                "function": "Lokativ",
+                "full_word": "evde",
+                "meaning": "zu Hause (wo?)",
+                "description": "Lokativ"
+              },
+              {
+                "suffix": "-a/-e",
+                "function": "Dativ",
+                "full_word": "eve",
+                "meaning": "nach Hause (wohin?)",
+                "description": "Dativ/Richtung"
+              }
+            ]
+          }
+        ],
+        "meaning": "(kein Wort)",
+        "stem_alternatives": [
+          {
+            "stem": "",
+            "full_word": "",
+            "meaning": "(kein Wort)"
+          },
+          {
+            "stem": "ev",
+            "full_word": "evden",
+            "meaning": "von zu Hause"
+          },
+          {
+            "stem": "okul",
+            "full_word": "okuldan",
+            "meaning": "aus der Schule"
+          },
+          {
+            "stem": "iş",
+            "full_word": "işten",
+            "meaning": "von der Arbeit"
+          },
+          {
+            "stem": "market",
+            "full_word": "marketten",
+            "meaning": "vom Supermarkt"
+          },
+          {
+            "stem": "şehir",
+            "full_word": "şehirden",
+            "meaning": "aus der Stadt"
+          }
+        ],
+        "adverb_groups": {
+          "selected_group": "personen",
+          "groups": {
+            "personen": {
+              "label": "Personen",
+              "items": [
+                {
+                  "stem": "çocuk",
+                  "full_word": "çocuk",
+                  "meaning": "Kind"
+                },
+                {
+                  "stem": "adam",
+                  "full_word": "adam",
+                  "meaning": "Mann"
+                },
+                {
+                  "stem": "kadın",
+                  "full_word": "kadın",
+                  "meaning": "Frau"
+                },
+                {
+                  "stem": "kız",
+                  "full_word": "kız",
+                  "meaning": "Mädchen"
+                },
+                {
+                  "stem": "oğlan",
+                  "full_word": "oğlan",
+                  "meaning": "Junge"
+                },
+                {
+                  "stem": "öğretmen",
+                  "full_word": "öğretmen",
+                  "meaning": "Lehrer"
+                },
+                {
+                  "stem": "doktor",
+                  "full_word": "doktor",
+                  "meaning": "Arzt"
+                },
+                {
+                  "stem": "öğrenci",
+                  "full_word": "öğrenci",
+                  "meaning": "Schüler"
+                }
+              ]
+            },
+            "familie": {
+              "label": "Familie",
+              "items": [
+                {
+                  "stem": "anne",
+                  "full_word": "anne",
+                  "meaning": "Mutter"
+                },
+                {
+                  "stem": "baba",
+                  "full_word": "baba",
+                  "meaning": "Vater"
+                },
+                {
+                  "stem": "kardeş",
+                  "full_word": "kardeş",
+                  "meaning": "Geschwister"
+                },
+                {
+                  "stem": "abla",
+                  "full_word": "abla",
+                  "meaning": "ältere Schwester"
+                },
+                {
+                  "stem": "ağabey",
+                  "full_word": "ağabey",
+                  "meaning": "älterer Bruder"
+                },
+                {
+                  "stem": "dede",
+                  "full_word": "dede",
+                  "meaning": "Großvater"
+                },
+                {
+                  "stem": "nine",
+                  "full_word": "nine",
+                  "meaning": "Großmutter"
+                },
+                {
+                  "stem": "arkadaş",
+                  "full_word": "arkadaş",
+                  "meaning": "Freund"
+                }
+              ]
+            },
+            "gegenstaende": {
+              "label": "Gegenstände",
+              "items": [
+                {
+                  "stem": "kitap",
+                  "full_word": "kitap",
+                  "meaning": "Buch"
+                },
+                {
+                  "stem": "kalem",
+                  "full_word": "kalem",
+                  "meaning": "Stift"
+                },
+                {
+                  "stem": "masa",
+                  "full_word": "masa",
+                  "meaning": "Tisch"
+                },
+                {
+                  "stem": "sandalye",
+                  "full_word": "sandalye",
+                  "meaning": "Stuhl"
+                },
+                {
+                  "stem": "telefon",
+                  "full_word": "telefon",
+                  "meaning": "Telefon"
+                },
+                {
+                  "stem": "bilgisayar",
+                  "full_word": "bilgisayar",
+                  "meaning": "Computer"
+                },
+                {
+                  "stem": "araba",
+                  "full_word": "araba",
+                  "meaning": "Auto"
+                },
+                {
+                  "stem": "anahtar",
+                  "full_word": "anahtar",
+                  "meaning": "Schlüssel"
+                }
+              ]
+            },
+            "orte": {
+              "label": "Orte",
+              "items": [
+                {
+                  "stem": "ev",
+                  "full_word": "ev",
+                  "meaning": "Haus"
+                },
+                {
+                  "stem": "okul",
+                  "full_word": "okul",
+                  "meaning": "Schule"
+                },
+                {
+                  "stem": "park",
+                  "full_word": "park",
+                  "meaning": "Park"
+                },
+                {
+                  "stem": "hastane",
+                  "full_word": "hastane",
+                  "meaning": "Krankenhaus"
+                },
+                {
+                  "stem": "market",
+                  "full_word": "market",
+                  "meaning": "Supermarkt"
+                },
+                {
+                  "stem": "restoran",
+                  "full_word": "restoran",
+                  "meaning": "Restaurant"
+                },
+                {
+                  "stem": "şehir",
+                  "full_word": "şehir",
+                  "meaning": "Stadt"
+                },
+                {
+                  "stem": "köy",
+                  "full_word": "köy",
+                  "meaning": "Dorf"
+                }
+              ]
+            },
+            "nahrung": {
+              "label": "Nahrung",
+              "items": [
+                {
+                  "stem": "ekmek",
+                  "full_word": "ekmek",
+                  "meaning": "Brot"
+                },
+                {
+                  "stem": "su",
+                  "full_word": "su",
+                  "meaning": "Wasser"
+                },
+                {
+                  "stem": "çay",
+                  "full_word": "çay",
+                  "meaning": "Tee"
+                },
+                {
+                  "stem": "yemek",
+                  "full_word": "yemek",
+                  "meaning": "Essen"
+                },
+                {
+                  "stem": "meyve",
+                  "full_word": "meyve",
+                  "meaning": "Obst"
+                },
+                {
+                  "stem": "sebze",
+                  "full_word": "sebze",
+                  "meaning": "Gemüse"
+                },
+                {
+                  "stem": "et",
+                  "full_word": "et",
+                  "meaning": "Fleisch"
+                },
+                {
+                  "stem": "süt",
+                  "full_word": "süt",
+                  "meaning": "Milch"
+                }
+              ]
+            },
+            "abstrakta": {
+              "label": "Abstrakt",
+              "items": [
+                {
+                  "stem": "para",
+                  "full_word": "para",
+                  "meaning": "Geld"
+                },
+                {
+                  "stem": "iş",
+                  "full_word": "iş",
+                  "meaning": "Arbeit"
+                },
+                {
+                  "stem": "zaman",
+                  "full_word": "zaman",
+                  "meaning": "Zeit"
+                },
+                {
+                  "stem": "hediye",
+                  "full_word": "hediye",
+                  "meaning": "Geschenk"
+                },
+                {
+                  "stem": "haber",
+                  "full_word": "haber",
+                  "meaning": "Nachricht"
+                },
+                {
+                  "stem": "mektup",
+                  "full_word": "mektup",
+                  "meaning": "Brief"
+                },
+                {
+                  "stem": "soru",
+                  "full_word": "soru",
+                  "meaning": "Frage"
+                },
+                {
+                  "stem": "cevap",
+                  "full_word": "cevap",
+                  "meaning": "Antwort"
+                }
+              ]
+            }
+          }
+        }
+      },
+      {
+        "role": "Ortsangabe",
+        "role_de": "Ortsangabe (Lokativ)",
+        "full_word": "",
+        "stem": "",
+        "suffixes": [
+          {
+            "suffix": "-da",
+            "function": "Lokativ-Suffix",
+            "description": "Ortsangabe (wo?)",
+            "variations": [
+              {
+                "suffix": "-da/-de/-ta/-te",
+                "function": "Lokativ",
+                "full_word": "okulda",
+                "meaning": "in der Schule (wo?)",
+                "description": "Lokativ"
+              },
+              {
+                "suffix": "-a/-e",
+                "function": "Dativ",
+                "full_word": "okula",
+                "meaning": "zur Schule (wohin?)",
+                "description": "Dativ/Richtung"
+              },
+              {
+                "suffix": "-dan/-den/-tan/-ten",
+                "function": "Ablativ",
+                "full_word": "okuldan",
+                "meaning": "aus der Schule (woher?)",
+                "description": "Ablativ"
+              }
+            ]
+          }
+        ],
+        "meaning": "(kein Wort)",
+        "stem_alternatives": [
+          {
+            "stem": "",
+            "full_word": "",
+            "meaning": "(kein Wort)"
+          },
+          {
+            "stem": "okul",
+            "full_word": "okulda",
+            "meaning": "in der Schule"
+          },
+          {
+            "stem": "ev",
+            "full_word": "evde",
+            "meaning": "zu Hause"
+          },
+          {
+            "stem": "park",
+            "full_word": "parkta",
+            "meaning": "im Park"
+          },
+          {
+            "stem": "sokak",
+            "full_word": "sokakta",
+            "meaning": "auf der Straße"
+          },
+          {
+            "stem": "bahçe",
+            "full_word": "bahçede",
+            "meaning": "im Garten"
+          }
+        ],
+        "adverb_groups": {
+          "selected_group": "personen",
+          "groups": {
+            "personen": {
+              "label": "Personen",
+              "items": [
+                {
+                  "stem": "çocuk",
+                  "full_word": "çocuk",
+                  "meaning": "Kind"
+                },
+                {
+                  "stem": "adam",
+                  "full_word": "adam",
+                  "meaning": "Mann"
+                },
+                {
+                  "stem": "kadın",
+                  "full_word": "kadın",
+                  "meaning": "Frau"
+                },
+                {
+                  "stem": "kız",
+                  "full_word": "kız",
+                  "meaning": "Mädchen"
+                },
+                {
+                  "stem": "oğlan",
+                  "full_word": "oğlan",
+                  "meaning": "Junge"
+                },
+                {
+                  "stem": "öğretmen",
+                  "full_word": "öğretmen",
+                  "meaning": "Lehrer"
+                },
+                {
+                  "stem": "doktor",
+                  "full_word": "doktor",
+                  "meaning": "Arzt"
+                },
+                {
+                  "stem": "öğrenci",
+                  "full_word": "öğrenci",
+                  "meaning": "Schüler"
+                }
+              ]
+            },
+            "familie": {
+              "label": "Familie",
+              "items": [
+                {
+                  "stem": "anne",
+                  "full_word": "anne",
+                  "meaning": "Mutter"
+                },
+                {
+                  "stem": "baba",
+                  "full_word": "baba",
+                  "meaning": "Vater"
+                },
+                {
+                  "stem": "kardeş",
+                  "full_word": "kardeş",
+                  "meaning": "Geschwister"
+                },
+                {
+                  "stem": "abla",
+                  "full_word": "abla",
+                  "meaning": "ältere Schwester"
+                },
+                {
+                  "stem": "ağabey",
+                  "full_word": "ağabey",
+                  "meaning": "älterer Bruder"
+                },
+                {
+                  "stem": "dede",
+                  "full_word": "dede",
+                  "meaning": "Großvater"
+                },
+                {
+                  "stem": "nine",
+                  "full_word": "nine",
+                  "meaning": "Großmutter"
+                },
+                {
+                  "stem": "arkadaş",
+                  "full_word": "arkadaş",
+                  "meaning": "Freund"
+                }
+              ]
+            },
+            "gegenstaende": {
+              "label": "Gegenstände",
+              "items": [
+                {
+                  "stem": "kitap",
+                  "full_word": "kitap",
+                  "meaning": "Buch"
+                },
+                {
+                  "stem": "kalem",
+                  "full_word": "kalem",
+                  "meaning": "Stift"
+                },
+                {
+                  "stem": "masa",
+                  "full_word": "masa",
+                  "meaning": "Tisch"
+                },
+                {
+                  "stem": "sandalye",
+                  "full_word": "sandalye",
+                  "meaning": "Stuhl"
+                },
+                {
+                  "stem": "telefon",
+                  "full_word": "telefon",
+                  "meaning": "Telefon"
+                },
+                {
+                  "stem": "bilgisayar",
+                  "full_word": "bilgisayar",
+                  "meaning": "Computer"
+                },
+                {
+                  "stem": "araba",
+                  "full_word": "araba",
+                  "meaning": "Auto"
+                },
+                {
+                  "stem": "anahtar",
+                  "full_word": "anahtar",
+                  "meaning": "Schlüssel"
+                }
+              ]
+            },
+            "orte": {
+              "label": "Orte",
+              "items": [
+                {
+                  "stem": "ev",
+                  "full_word": "ev",
+                  "meaning": "Haus"
+                },
+                {
+                  "stem": "okul",
+                  "full_word": "okul",
+                  "meaning": "Schule"
+                },
+                {
+                  "stem": "park",
+                  "full_word": "park",
+                  "meaning": "Park"
+                },
+                {
+                  "stem": "hastane",
+                  "full_word": "hastane",
+                  "meaning": "Krankenhaus"
+                },
+                {
+                  "stem": "market",
+                  "full_word": "market",
+                  "meaning": "Supermarkt"
+                },
+                {
+                  "stem": "restoran",
+                  "full_word": "restoran",
+                  "meaning": "Restaurant"
+                },
+                {
+                  "stem": "şehir",
+                  "full_word": "şehir",
+                  "meaning": "Stadt"
+                },
+                {
+                  "stem": "köy",
+                  "full_word": "köy",
+                  "meaning": "Dorf"
+                }
+              ]
+            },
+            "nahrung": {
+              "label": "Nahrung",
+              "items": [
+                {
+                  "stem": "ekmek",
+                  "full_word": "ekmek",
+                  "meaning": "Brot"
+                },
+                {
+                  "stem": "su",
+                  "full_word": "su",
+                  "meaning": "Wasser"
+                },
+                {
+                  "stem": "çay",
+                  "full_word": "çay",
+                  "meaning": "Tee"
+                },
+                {
+                  "stem": "yemek",
+                  "full_word": "yemek",
+                  "meaning": "Essen"
+                },
+                {
+                  "stem": "meyve",
+                  "full_word": "meyve",
+                  "meaning": "Obst"
+                },
+                {
+                  "stem": "sebze",
+                  "full_word": "sebze",
+                  "meaning": "Gemüse"
+                },
+                {
+                  "stem": "et",
+                  "full_word": "et",
+                  "meaning": "Fleisch"
+                },
+                {
+                  "stem": "süt",
+                  "full_word": "süt",
+                  "meaning": "Milch"
+                }
+              ]
+            },
+            "abstrakta": {
+              "label": "Abstrakt",
+              "items": [
+                {
+                  "stem": "para",
+                  "full_word": "para",
+                  "meaning": "Geld"
+                },
+                {
+                  "stem": "iş",
+                  "full_word": "iş",
+                  "meaning": "Arbeit"
+                },
+                {
+                  "stem": "zaman",
+                  "full_word": "zaman",
+                  "meaning": "Zeit"
+                },
+                {
+                  "stem": "hediye",
+                  "full_word": "hediye",
+                  "meaning": "Geschenk"
+                },
+                {
+                  "stem": "haber",
+                  "full_word": "haber",
+                  "meaning": "Nachricht"
+                },
+                {
+                  "stem": "mektup",
+                  "full_word": "mektup",
+                  "meaning": "Brief"
+                },
+                {
+                  "stem": "soru",
+                  "full_word": "soru",
+                  "meaning": "Frage"
+                },
+                {
+                  "stem": "cevap",
+                  "full_word": "cevap",
+                  "meaning": "Antwort"
+                }
+              ]
+            }
+          }
+        }
+      },
+      {
+        "role": "Indirektes Objekt",
+        "role_de": "Indirektes Objekt (Dativ)",
+        "full_word": "",
+        "stem": "",
+        "suffixes": [
+          {
+            "suffix": "-a",
+            "function": "Dativ-Suffix",
+            "description": "Richtung / Empfänger (wem?)",
+            "variations": [
+              {
+                "suffix": "-a / -e",
+                "function": "Dativ",
+                "full_word": "kıza",
+                "meaning": "dem Mädchen (wem?)",
+                "description": "Dativ – Empfänger"
+              },
+              {
+                "suffix": "-ı / -i",
+                "function": "Akkusativ",
+                "full_word": "kızı",
+                "meaning": "das Mädchen (wen?)",
+                "description": "Akkusativ – bestimmt"
+              },
+              {
+                "suffix": "-da / -de",
+                "function": "Lokativ",
+                "full_word": "kızda",
+                "meaning": "bei dem Mädchen (wo?)",
+                "description": "Lokativ – Ort"
+              },
+              {
+                "suffix": "-dan / -den",
+                "function": "Ablativ",
+                "full_word": "kızdan",
+                "meaning": "von dem Mädchen (woher?)",
+                "description": "Ablativ – Herkunft"
+              },
+              {
+                "suffix": "-ın / -in",
+                "function": "Genitiv",
+                "full_word": "kızın",
+                "meaning": "des Mädchens (wessen?)",
+                "description": "Genitiv – Besitz"
+              },
+              {
+                "suffix": "∅",
+                "function": "Nominativ",
+                "full_word": "kız",
+                "meaning": "das Mädchen (wer?)",
+                "description": "Nominativ"
+              }
+            ]
+          }
+        ],
+        "meaning": "(kein Wort)",
+        "stem_alternatives": [
+          {
+            "stem": "",
+            "full_word": "",
+            "meaning": "(kein Wort)"
+          },
+          {
+            "stem": "kız",
+            "full_word": "kıza",
+            "meaning": "dem Mädchen"
+          },
+          {
+            "stem": "çocuk",
+            "full_word": "çocuğa",
+            "meaning": "dem Kind"
+          },
+          {
+            "stem": "adam",
+            "full_word": "adama",
+            "meaning": "dem Mann"
+          },
+          {
+            "stem": "kadın",
+            "full_word": "kadına",
+            "meaning": "der Frau"
+          },
+          {
+            "stem": "öğretmen",
+            "full_word": "öğretmene",
+            "meaning": "dem Lehrer"
+          },
+          {
+            "stem": "anne",
+            "full_word": "anneye",
+            "meaning": "der Mutter"
+          },
+          {
+            "stem": "arkadaş",
+            "full_word": "arkadaşa",
+            "meaning": "dem Freund"
+          },
+          {
+            "stem": "bana",
+            "full_word": "bana",
+            "meaning": "mir (Pronomen)"
+          },
+          {
+            "stem": "sana",
+            "full_word": "sana",
+            "meaning": "dir (Pronomen)"
+          },
+          {
+            "stem": "ona",
+            "full_word": "ona",
+            "meaning": "ihm/ihr (Pronomen)"
+          },
+          {
+            "stem": "bize",
+            "full_word": "bize",
+            "meaning": "uns (Pronomen)"
+          },
+          {
+            "stem": "size",
+            "full_word": "size",
+            "meaning": "euch/Ihnen (Pronomen)"
+          },
+          {
+            "stem": "onlara",
+            "full_word": "onlara",
+            "meaning": "ihnen (Pronomen)"
+          }
+        ],
+        "adverb_groups": {
+          "selected_group": "personen",
+          "groups": {
+            "personen": {
+              "label": "Personen",
+              "items": [
+                {
+                  "stem": "çocuk",
+                  "full_word": "çocuk",
+                  "meaning": "Kind"
+                },
+                {
+                  "stem": "adam",
+                  "full_word": "adam",
+                  "meaning": "Mann"
+                },
+                {
+                  "stem": "kadın",
+                  "full_word": "kadın",
+                  "meaning": "Frau"
+                },
+                {
+                  "stem": "kız",
+                  "full_word": "kız",
+                  "meaning": "Mädchen"
+                },
+                {
+                  "stem": "oğlan",
+                  "full_word": "oğlan",
+                  "meaning": "Junge"
+                },
+                {
+                  "stem": "öğretmen",
+                  "full_word": "öğretmen",
+                  "meaning": "Lehrer"
+                },
+                {
+                  "stem": "doktor",
+                  "full_word": "doktor",
+                  "meaning": "Arzt"
+                },
+                {
+                  "stem": "öğrenci",
+                  "full_word": "öğrenci",
+                  "meaning": "Schüler"
+                }
+              ]
+            },
+            "familie": {
+              "label": "Familie",
+              "items": [
+                {
+                  "stem": "anne",
+                  "full_word": "anne",
+                  "meaning": "Mutter"
+                },
+                {
+                  "stem": "baba",
+                  "full_word": "baba",
+                  "meaning": "Vater"
+                },
+                {
+                  "stem": "kardeş",
+                  "full_word": "kardeş",
+                  "meaning": "Geschwister"
+                },
+                {
+                  "stem": "abla",
+                  "full_word": "abla",
+                  "meaning": "ältere Schwester"
+                },
+                {
+                  "stem": "ağabey",
+                  "full_word": "ağabey",
+                  "meaning": "älterer Bruder"
+                },
+                {
+                  "stem": "dede",
+                  "full_word": "dede",
+                  "meaning": "Großvater"
+                },
+                {
+                  "stem": "nine",
+                  "full_word": "nine",
+                  "meaning": "Großmutter"
+                },
+                {
+                  "stem": "arkadaş",
+                  "full_word": "arkadaş",
+                  "meaning": "Freund"
+                }
+              ]
+            },
+            "gegenstaende": {
+              "label": "Gegenstände",
+              "items": [
+                {
+                  "stem": "kitap",
+                  "full_word": "kitap",
+                  "meaning": "Buch"
+                },
+                {
+                  "stem": "kalem",
+                  "full_word": "kalem",
+                  "meaning": "Stift"
+                },
+                {
+                  "stem": "masa",
+                  "full_word": "masa",
+                  "meaning": "Tisch"
+                },
+                {
+                  "stem": "sandalye",
+                  "full_word": "sandalye",
+                  "meaning": "Stuhl"
+                },
+                {
+                  "stem": "telefon",
+                  "full_word": "telefon",
+                  "meaning": "Telefon"
+                },
+                {
+                  "stem": "bilgisayar",
+                  "full_word": "bilgisayar",
+                  "meaning": "Computer"
+                },
+                {
+                  "stem": "araba",
+                  "full_word": "araba",
+                  "meaning": "Auto"
+                },
+                {
+                  "stem": "anahtar",
+                  "full_word": "anahtar",
+                  "meaning": "Schlüssel"
+                }
+              ]
+            },
+            "orte": {
+              "label": "Orte",
+              "items": [
+                {
+                  "stem": "ev",
+                  "full_word": "ev",
+                  "meaning": "Haus"
+                },
+                {
+                  "stem": "okul",
+                  "full_word": "okul",
+                  "meaning": "Schule"
+                },
+                {
+                  "stem": "park",
+                  "full_word": "park",
+                  "meaning": "Park"
+                },
+                {
+                  "stem": "hastane",
+                  "full_word": "hastane",
+                  "meaning": "Krankenhaus"
+                },
+                {
+                  "stem": "market",
+                  "full_word": "market",
+                  "meaning": "Supermarkt"
+                },
+                {
+                  "stem": "restoran",
+                  "full_word": "restoran",
+                  "meaning": "Restaurant"
+                },
+                {
+                  "stem": "şehir",
+                  "full_word": "şehir",
+                  "meaning": "Stadt"
+                },
+                {
+                  "stem": "köy",
+                  "full_word": "köy",
+                  "meaning": "Dorf"
+                }
+              ]
+            },
+            "nahrung": {
+              "label": "Nahrung",
+              "items": [
+                {
+                  "stem": "ekmek",
+                  "full_word": "ekmek",
+                  "meaning": "Brot"
+                },
+                {
+                  "stem": "su",
+                  "full_word": "su",
+                  "meaning": "Wasser"
+                },
+                {
+                  "stem": "çay",
+                  "full_word": "çay",
+                  "meaning": "Tee"
+                },
+                {
+                  "stem": "yemek",
+                  "full_word": "yemek",
+                  "meaning": "Essen"
+                },
+                {
+                  "stem": "meyve",
+                  "full_word": "meyve",
+                  "meaning": "Obst"
+                },
+                {
+                  "stem": "sebze",
+                  "full_word": "sebze",
+                  "meaning": "Gemüse"
+                },
+                {
+                  "stem": "et",
+                  "full_word": "et",
+                  "meaning": "Fleisch"
+                },
+                {
+                  "stem": "süt",
+                  "full_word": "süt",
+                  "meaning": "Milch"
+                }
+              ]
+            },
+            "abstrakta": {
+              "label": "Abstrakt",
+              "items": [
+                {
+                  "stem": "para",
+                  "full_word": "para",
+                  "meaning": "Geld"
+                },
+                {
+                  "stem": "iş",
+                  "full_word": "iş",
+                  "meaning": "Arbeit"
+                },
+                {
+                  "stem": "zaman",
+                  "full_word": "zaman",
+                  "meaning": "Zeit"
+                },
+                {
+                  "stem": "hediye",
+                  "full_word": "hediye",
+                  "meaning": "Geschenk"
+                },
+                {
+                  "stem": "haber",
+                  "full_word": "haber",
+                  "meaning": "Nachricht"
+                },
+                {
+                  "stem": "mektup",
+                  "full_word": "mektup",
+                  "meaning": "Brief"
+                },
+                {
+                  "stem": "soru",
+                  "full_word": "soru",
+                  "meaning": "Frage"
+                },
+                {
+                  "stem": "cevap",
+                  "full_word": "cevap",
+                  "meaning": "Antwort"
+                }
+              ]
+            }
+          }
+        }
+      },
+      {
+        "role": "Adjektiv",
+        "role_de": "Adjektiv (Eigenschaft)",
+        "full_word": "",
+        "stem": "",
+        "suffixes": [],
+        "meaning": "(kein Wort)",
+        "stem_alternatives": [
+          {
+            "stem": "",
+            "full_word": "",
+            "meaning": "(kein Wort)"
+          }
+        ],
+        "adverb_groups": {
+          "selected_group": "eigenschaft",
+          "groups": {
+            "eigenschaft": {
+              "label": "Eigenschaft",
+              "items": [
+                {
+                  "stem": "güzel",
+                  "full_word": "güzel",
+                  "meaning": "schön"
+                },
+                {
+                  "stem": "çirkin",
+                  "full_word": "çirkin",
+                  "meaning": "hässlich"
+                },
+                {
+                  "stem": "iyi",
+                  "full_word": "iyi",
+                  "meaning": "gut"
+                },
+                {
+                  "stem": "kötü",
+                  "full_word": "kötü",
+                  "meaning": "schlecht"
+                },
+                {
+                  "stem": "temiz",
+                  "full_word": "temiz",
+                  "meaning": "sauber"
+                },
+                {
+                  "stem": "kirli",
+                  "full_word": "kirli",
+                  "meaning": "schmutzig"
+                },
+                {
+                  "stem": "taze",
+                  "full_word": "taze",
+                  "meaning": "frisch"
+                }
+              ]
+            },
+            "groesse": {
+              "label": "Größe/Menge",
+              "items": [
+                {
+                  "stem": "büyük",
+                  "full_word": "büyük",
+                  "meaning": "groß"
+                },
+                {
+                  "stem": "küçük",
+                  "full_word": "küçük",
+                  "meaning": "klein"
+                },
+                {
+                  "stem": "uzun",
+                  "full_word": "uzun",
+                  "meaning": "lang/groß"
+                },
+                {
+                  "stem": "kısa",
+                  "full_word": "kısa",
+                  "meaning": "kurz/klein"
+                },
+                {
+                  "stem": "kalın",
+                  "full_word": "kalın",
+                  "meaning": "dick"
+                },
+                {
+                  "stem": "ince",
+                  "full_word": "ince",
+                  "meaning": "dünn/fein"
+                },
+                {
+                  "stem": "geniş",
+                  "full_word": "geniş",
+                  "meaning": "breit/weit"
+                },
+                {
+                  "stem": "dar",
+                  "full_word": "dar",
+                  "meaning": "eng/schmal"
+                }
+              ]
+            },
+            "farbe": {
+              "label": "Farbe",
+              "items": [
+                {
+                  "stem": "kırmızı",
+                  "full_word": "kırmızı",
+                  "meaning": "rot"
+                },
+                {
+                  "stem": "mavi",
+                  "full_word": "mavi",
+                  "meaning": "blau"
+                },
+                {
+                  "stem": "yeşil",
+                  "full_word": "yeşil",
+                  "meaning": "grün"
+                },
+                {
+                  "stem": "sarı",
+                  "full_word": "sarı",
+                  "meaning": "gelb"
+                },
+                {
+                  "stem": "beyaz",
+                  "full_word": "beyaz",
+                  "meaning": "weiß"
+                },
+                {
+                  "stem": "siyah",
+                  "full_word": "siyah",
+                  "meaning": "schwarz"
+                },
+                {
+                  "stem": "kahverengi",
+                  "full_word": "kahverengi",
+                  "meaning": "braun"
+                },
+                {
+                  "stem": "pembe",
+                  "full_word": "pembe",
+                  "meaning": "rosa"
+                }
+              ]
+            },
+            "alter": {
+              "label": "Alter/Zustand",
+              "items": [
+                {
+                  "stem": "yeni",
+                  "full_word": "yeni",
+                  "meaning": "neu"
+                },
+                {
+                  "stem": "eski",
+                  "full_word": "eski",
+                  "meaning": "alt"
+                },
+                {
+                  "stem": "genç",
+                  "full_word": "genç",
+                  "meaning": "jung"
+                },
+                {
+                  "stem": "yaşlı",
+                  "full_word": "yaşlı",
+                  "meaning": "alt (Person)"
+                },
+                {
+                  "stem": "sıcak",
+                  "full_word": "sıcak",
+                  "meaning": "warm/heiß"
+                },
+                {
+                  "stem": "soğuk",
+                  "full_word": "soğuk",
+                  "meaning": "kalt"
+                },
+                {
+                  "stem": "ağır",
+                  "full_word": "ağır",
+                  "meaning": "schwer"
+                },
+                {
+                  "stem": "hafif",
+                  "full_word": "hafif",
+                  "meaning": "leicht"
+                }
+              ]
+            },
+            "gefuehl": {
+              "label": "Gefühl/Charakter",
+              "items": [
+                {
+                  "stem": "mutlu",
+                  "full_word": "mutlu",
+                  "meaning": "glücklich"
+                },
+                {
+                  "stem": "üzgün",
+                  "full_word": "üzgün",
+                  "meaning": "traurig"
+                },
+                {
+                  "stem": "kızgın",
+                  "full_word": "kızgın",
+                  "meaning": "wütend"
+                },
+                {
+                  "stem": "yorgun",
+                  "full_word": "yorgun",
+                  "meaning": "müde"
+                },
+                {
+                  "stem": "akıllı",
+                  "full_word": "akıllı",
+                  "meaning": "klug"
+                },
+                {
+                  "stem": "tembel",
+                  "full_word": "tembel",
+                  "meaning": "faul"
+                },
+                {
+                  "stem": "cesur",
+                  "full_word": "cesur",
+                  "meaning": "mutig"
+                }
+              ]
+            }
+          }
+        }
+      },
+      {
+        "role": "Direktes Objekt",
+        "role_de": "Direktes Objekt (Akkusativ)",
+        "full_word": "seni",
+        "stem": "seni",
+        "suffixes": [
+          {
+            "suffix": "-ı",
+            "function": "Akkusativ-Suffix",
+            "description": "bestimmtes Objekt (wen/was?)",
+            "variations": [
+              {
+                "suffix": "-ı / -i",
+                "function": "Akkusativ",
+                "full_word": "kitabı",
+                "meaning": "das Buch (bestimmt)",
+                "description": "Akkusativ"
+              },
+              {
+                "suffix": "-a / -e",
+                "function": "Dativ",
+                "full_word": "kitaba",
+                "meaning": "dem Buch / zum Buch",
+                "description": "Dativ"
+              },
+              {
+                "suffix": "-da / -ta",
+                "function": "Lokativ",
+                "full_word": "kitapta",
+                "meaning": "im Buch (wo?)",
+                "description": "Lokativ"
+              },
+              {
+                "suffix": "-dan / -tan",
+                "function": "Ablativ",
+                "full_word": "kitaptan",
+                "meaning": "aus dem Buch (woher?)",
+                "description": "Ablativ"
+              },
+              {
+                "suffix": "-ın / -in",
+                "function": "Genitiv",
+                "full_word": "kitabın",
+                "meaning": "des Buches (wessen?)",
+                "description": "Genitiv"
+              },
+              {
+                "suffix": "∅",
+                "function": "Nominativ",
+                "full_word": "kitap",
+                "meaning": "ein Buch",
+                "description": "Nominativ"
+              }
+            ]
+          }
+        ],
+        "meaning": "dich (Pronomen)",
+        "stem_alternatives": [
+          {
+            "stem": "",
+            "full_word": "",
+            "meaning": "(kein Wort)"
+          },
+          {
+            "stem": "kitap",
+            "full_word": "kitabı",
+            "meaning": "das Buch"
+          },
+          {
+            "stem": "kalem",
+            "full_word": "kalemi",
+            "meaning": "den Stift"
+          },
+          {
+            "stem": "çiçek",
+            "full_word": "çiçeği",
+            "meaning": "die Blume"
+          },
+          {
+            "stem": "mektup",
+            "full_word": "mektubu",
+            "meaning": "den Brief"
+          },
+          {
+            "stem": "para",
+            "full_word": "parayı",
+            "meaning": "das Geld"
+          },
+          {
+            "stem": "hediye",
+            "full_word": "hediyeyi",
+            "meaning": "das Geschenk"
+          },
+          {
+            "stem": "beni",
+            "full_word": "beni",
+            "meaning": "mich (Pronomen)"
+          },
+          {
+            "stem": "seni",
+            "full_word": "seni",
+            "meaning": "dich (Pronomen)"
+          },
+          {
+            "stem": "onu",
+            "full_word": "onu",
+            "meaning": "ihn/sie/es (Pronomen)"
+          },
+          {
+            "stem": "bizi",
+            "full_word": "bizi",
+            "meaning": "uns (Pronomen)"
+          },
+          {
+            "stem": "sizi",
+            "full_word": "sizi",
+            "meaning": "euch/Sie (Pronomen)"
+          },
+          {
+            "stem": "onlari",
+            "full_word": "onları",
+            "meaning": "sie (Pl., Pronomen)"
+          }
+        ],
+        "adverb_groups": {
+          "selected_group": "personen",
+          "groups": {
+            "personen": {
+              "label": "Personen",
+              "items": [
+                {
+                  "stem": "çocuk",
+                  "full_word": "çocuk",
+                  "meaning": "Kind"
+                },
+                {
+                  "stem": "adam",
+                  "full_word": "adam",
+                  "meaning": "Mann"
+                },
+                {
+                  "stem": "kadın",
+                  "full_word": "kadın",
+                  "meaning": "Frau"
+                },
+                {
+                  "stem": "kız",
+                  "full_word": "kız",
+                  "meaning": "Mädchen"
+                },
+                {
+                  "stem": "oğlan",
+                  "full_word": "oğlan",
+                  "meaning": "Junge"
+                },
+                {
+                  "stem": "öğretmen",
+                  "full_word": "öğretmen",
+                  "meaning": "Lehrer"
+                },
+                {
+                  "stem": "doktor",
+                  "full_word": "doktor",
+                  "meaning": "Arzt"
+                },
+                {
+                  "stem": "öğrenci",
+                  "full_word": "öğrenci",
+                  "meaning": "Schüler"
+                }
+              ]
+            },
+            "familie": {
+              "label": "Familie",
+              "items": [
+                {
+                  "stem": "anne",
+                  "full_word": "anne",
+                  "meaning": "Mutter"
+                },
+                {
+                  "stem": "baba",
+                  "full_word": "baba",
+                  "meaning": "Vater"
+                },
+                {
+                  "stem": "kardeş",
+                  "full_word": "kardeş",
+                  "meaning": "Geschwister"
+                },
+                {
+                  "stem": "abla",
+                  "full_word": "abla",
+                  "meaning": "ältere Schwester"
+                },
+                {
+                  "stem": "ağabey",
+                  "full_word": "ağabey",
+                  "meaning": "älterer Bruder"
+                },
+                {
+                  "stem": "dede",
+                  "full_word": "dede",
+                  "meaning": "Großvater"
+                },
+                {
+                  "stem": "nine",
+                  "full_word": "nine",
+                  "meaning": "Großmutter"
+                },
+                {
+                  "stem": "arkadaş",
+                  "full_word": "arkadaş",
+                  "meaning": "Freund"
+                }
+              ]
+            },
+            "gegenstaende": {
+              "label": "Gegenstände",
+              "items": [
+                {
+                  "stem": "kitap",
+                  "full_word": "kitap",
+                  "meaning": "Buch"
+                },
+                {
+                  "stem": "kalem",
+                  "full_word": "kalem",
+                  "meaning": "Stift"
+                },
+                {
+                  "stem": "masa",
+                  "full_word": "masa",
+                  "meaning": "Tisch"
+                },
+                {
+                  "stem": "sandalye",
+                  "full_word": "sandalye",
+                  "meaning": "Stuhl"
+                },
+                {
+                  "stem": "telefon",
+                  "full_word": "telefon",
+                  "meaning": "Telefon"
+                },
+                {
+                  "stem": "bilgisayar",
+                  "full_word": "bilgisayar",
+                  "meaning": "Computer"
+                },
+                {
+                  "stem": "araba",
+                  "full_word": "araba",
+                  "meaning": "Auto"
+                },
+                {
+                  "stem": "anahtar",
+                  "full_word": "anahtar",
+                  "meaning": "Schlüssel"
+                }
+              ]
+            },
+            "orte": {
+              "label": "Orte",
+              "items": [
+                {
+                  "stem": "ev",
+                  "full_word": "ev",
+                  "meaning": "Haus"
+                },
+                {
+                  "stem": "okul",
+                  "full_word": "okul",
+                  "meaning": "Schule"
+                },
+                {
+                  "stem": "park",
+                  "full_word": "park",
+                  "meaning": "Park"
+                },
+                {
+                  "stem": "hastane",
+                  "full_word": "hastane",
+                  "meaning": "Krankenhaus"
+                },
+                {
+                  "stem": "market",
+                  "full_word": "market",
+                  "meaning": "Supermarkt"
+                },
+                {
+                  "stem": "restoran",
+                  "full_word": "restoran",
+                  "meaning": "Restaurant"
+                },
+                {
+                  "stem": "şehir",
+                  "full_word": "şehir",
+                  "meaning": "Stadt"
+                },
+                {
+                  "stem": "köy",
+                  "full_word": "köy",
+                  "meaning": "Dorf"
+                }
+              ]
+            },
+            "nahrung": {
+              "label": "Nahrung",
+              "items": [
+                {
+                  "stem": "ekmek",
+                  "full_word": "ekmek",
+                  "meaning": "Brot"
+                },
+                {
+                  "stem": "su",
+                  "full_word": "su",
+                  "meaning": "Wasser"
+                },
+                {
+                  "stem": "çay",
+                  "full_word": "çay",
+                  "meaning": "Tee"
+                },
+                {
+                  "stem": "yemek",
+                  "full_word": "yemek",
+                  "meaning": "Essen"
+                },
+                {
+                  "stem": "meyve",
+                  "full_word": "meyve",
+                  "meaning": "Obst"
+                },
+                {
+                  "stem": "sebze",
+                  "full_word": "sebze",
+                  "meaning": "Gemüse"
+                },
+                {
+                  "stem": "et",
+                  "full_word": "et",
+                  "meaning": "Fleisch"
+                },
+                {
+                  "stem": "süt",
+                  "full_word": "süt",
+                  "meaning": "Milch"
+                }
+              ]
+            },
+            "abstrakta": {
+              "label": "Abstrakt",
+              "items": [
+                {
+                  "stem": "para",
+                  "full_word": "para",
+                  "meaning": "Geld"
+                },
+                {
+                  "stem": "iş",
+                  "full_word": "iş",
+                  "meaning": "Arbeit"
+                },
+                {
+                  "stem": "zaman",
+                  "full_word": "zaman",
+                  "meaning": "Zeit"
+                },
+                {
+                  "stem": "hediye",
+                  "full_word": "hediye",
+                  "meaning": "Geschenk"
+                },
+                {
+                  "stem": "haber",
+                  "full_word": "haber",
+                  "meaning": "Nachricht"
+                },
+                {
+                  "stem": "mektup",
+                  "full_word": "mektup",
+                  "meaning": "Brief"
+                },
+                {
+                  "stem": "soru",
+                  "full_word": "soru",
+                  "meaning": "Frage"
+                },
+                {
+                  "stem": "cevap",
+                  "full_word": "cevap",
+                  "meaning": "Antwort"
+                }
+              ]
+            }
+          }
+        }
+      },
+      {
+        "role": "Adverb",
+        "role_de": "Adverb (Art und Weise)",
+        "full_word": "",
+        "stem": "",
+        "suffixes": [],
+        "meaning": "(kein Wort)",
+        "stem_alternatives": [
+          {
+            "stem": "",
+            "full_word": "",
+            "meaning": "(kein Wort)"
+          }
+        ],
+        "adverb_groups": {
+          "selected_group": "art",
+          "groups": {
+            "art": {
+              "label": "Art und Weise",
+              "items": [
+                {
+                  "stem": "hızlı",
+                  "full_word": "hızlı",
+                  "meaning": "schnell"
+                },
+                {
+                  "stem": "yavaş",
+                  "full_word": "yavaş",
+                  "meaning": "langsam"
+                },
+                {
+                  "stem": "sessizce",
+                  "full_word": "sessizce",
+                  "meaning": "leise/still"
+                },
+                {
+                  "stem": "dikkatli",
+                  "full_word": "dikkatli",
+                  "meaning": "vorsichtig"
+                },
+                {
+                  "stem": "güzel",
+                  "full_word": "güzel",
+                  "meaning": "schön/gut"
+                },
+                {
+                  "stem": "kötü",
+                  "full_word": "kötü",
+                  "meaning": "schlecht"
+                },
+                {
+                  "stem": "kolay",
+                  "full_word": "kolay",
+                  "meaning": "leicht/einfach"
+                },
+                {
+                  "stem": "zor",
+                  "full_word": "zor",
+                  "meaning": "schwer/schwierig"
+                }
+              ]
+            },
+            "temporal": {
+              "label": "Temporal (Zeit)",
+              "items": [
+                {
+                  "stem": "hemen",
+                  "full_word": "hemen",
+                  "meaning": "sofort"
+                },
+                {
+                  "stem": "şimdi",
+                  "full_word": "şimdi",
+                  "meaning": "jetzt"
+                },
+                {
+                  "stem": "sonra",
+                  "full_word": "sonra",
+                  "meaning": "danach/später"
+                },
+                {
+                  "stem": "önce",
+                  "full_word": "önce",
+                  "meaning": "vorher/zuerst"
+                },
+                {
+                  "stem": "bazen",
+                  "full_word": "bazen",
+                  "meaning": "manchmal"
+                },
+                {
+                  "stem": "her zaman",
+                  "full_word": "her zaman",
+                  "meaning": "immer"
+                },
+                {
+                  "stem": "hiç",
+                  "full_word": "hiç",
+                  "meaning": "nie/niemals"
+                },
+                {
+                  "stem": "sık sık",
+                  "full_word": "sık sık",
+                  "meaning": "oft/häufig"
+                }
+              ]
+            },
+            "lokal": {
+              "label": "Lokal (Ort/Richtung)",
+              "items": [
+                {
+                  "stem": "burada",
+                  "full_word": "burada",
+                  "meaning": "hier"
+                },
+                {
+                  "stem": "orada",
+                  "full_word": "orada",
+                  "meaning": "dort"
+                },
+                {
+                  "stem": "yukarı",
+                  "full_word": "yukarı",
+                  "meaning": "oben/nach oben"
+                },
+                {
+                  "stem": "aşağı",
+                  "full_word": "aşağı",
+                  "meaning": "unten/nach unten"
+                },
+                {
+                  "stem": "ileri",
+                  "full_word": "ileri",
+                  "meaning": "vorwärts"
+                },
+                {
+                  "stem": "geri",
+                  "full_word": "geri",
+                  "meaning": "zurück"
+                },
+                {
+                  "stem": "içeri",
+                  "full_word": "içeri",
+                  "meaning": "hinein/drinnen"
+                },
+                {
+                  "stem": "dışarı",
+                  "full_word": "dışarı",
+                  "meaning": "hinaus/draußen"
+                }
+              ]
+            },
+            "kausal": {
+              "label": "Kausal (Grund/Zweck)",
+              "items": [
+                {
+                  "stem": "bu yüzden",
+                  "full_word": "bu yüzden",
+                  "meaning": "deshalb"
+                },
+                {
+                  "stem": "bu nedenle",
+                  "full_word": "bu nedenle",
+                  "meaning": "aus diesem Grund"
+                },
+                {
+                  "stem": "mutlaka",
+                  "full_word": "mutlaka",
+                  "meaning": "unbedingt"
+                },
+                {
+                  "stem": "belki",
+                  "full_word": "belki",
+                  "meaning": "vielleicht"
+                },
+                {
+                  "stem": "kesinlikle",
+                  "full_word": "kesinlikle",
+                  "meaning": "auf jeden Fall"
+                },
+                {
+                  "stem": "maalesef",
+                  "full_word": "maalesef",
+                  "meaning": "leider"
+                }
+              ]
+            }
+          }
+        }
+      },
+      {
+        "role": "Verb",
+        "role_de": "Verb (Prädikat)",
+        "full_word": "seviyorum",
+        "stem": "sev",
+        "current_tense": "iyor",
+        "suffixes": [
+          {
+            "suffix": "-iyor-um",
+            "function": "Präsens",
+            "description": "Verlaufsform",
+            "variations": [
+              {
+                "suffix": "-di",
+                "function": "di-Vergangenheit",
+                "full_word": "verdi",
+                "meaning": "gab",
+                "description": "Bestimmte Vergangenheit",
+                "tense_key": "di"
+              },
+              {
+                "suffix": "-miş",
+                "function": "miş-Vergangenheit",
+                "full_word": "vermiş",
+                "meaning": "soll gegeben haben",
+                "description": "Hörensagen",
+                "tense_key": "mis"
+              },
+              {
+                "suffix": "-iyor",
+                "function": "Präsens",
+                "full_word": "veriyor",
+                "meaning": "gibt (gerade)",
+                "description": "Verlaufsform",
+                "tense_key": "iyor"
+              },
+              {
+                "suffix": "-ir",
+                "function": "Aorist",
+                "full_word": "verir",
+                "meaning": "gibt (gewöhnlich)",
+                "description": "Gewohnheit",
+                "tense_key": "ir"
+              },
+              {
+                "suffix": "-ecek",
+                "function": "Futur",
+                "full_word": "verecek",
+                "meaning": "wird geben",
+                "description": "Zukunft",
+                "tense_key": "ecek"
+              },
+              {
+                "suffix": "-meli",
+                "function": "Notwendigkeit",
+                "full_word": "vermeli",
+                "meaning": "muss geben",
+                "description": "Sollen",
+                "tense_key": "meli"
+              }
+            ]
+          }
+        ],
+        "meaning": "ich liebe (gerade)",
+        "conjugation": {
+          "di": {
+            "1sg": {
+              "full_word": "verdim",
+              "suffix": "-di-m",
+              "meaning": "ich gab"
+            },
+            "2sg": {
+              "full_word": "verdin",
+              "suffix": "-di-n",
+              "meaning": "du gabst"
+            },
+            "3sg": {
+              "full_word": "verdi",
+              "suffix": "-di",
+              "meaning": "er/sie gab"
+            },
+            "1pl": {
+              "full_word": "verdik",
+              "suffix": "-di-k",
+              "meaning": "wir gaben"
+            },
+            "2pl": {
+              "full_word": "verdiniz",
+              "suffix": "-di-niz",
+              "meaning": "ihr gabt"
+            },
+            "3pl": {
+              "full_word": "verdiler",
+              "suffix": "-di-ler",
+              "meaning": "sie gaben"
+            }
+          },
+          "mis": {
+            "1sg": {
+              "full_word": "vermişim",
+              "suffix": "-miş-im",
+              "meaning": "ich soll gegeben haben"
+            },
+            "2sg": {
+              "full_word": "vermişsin",
+              "suffix": "-miş-sin",
+              "meaning": "du sollst gegeben haben"
+            },
+            "3sg": {
+              "full_word": "vermiş",
+              "suffix": "-miş",
+              "meaning": "er/sie soll gegeben haben"
+            },
+            "1pl": {
+              "full_word": "vermişiz",
+              "suffix": "-miş-iz",
+              "meaning": "wir sollen gegeben haben"
+            },
+            "2pl": {
+              "full_word": "vermişsiniz",
+              "suffix": "-miş-siniz",
+              "meaning": "ihr sollt gegeben haben"
+            },
+            "3pl": {
+              "full_word": "vermişler",
+              "suffix": "-miş-ler",
+              "meaning": "sie sollen gegeben haben"
+            }
+          },
+          "iyor": {
+            "1sg": {
+              "full_word": "veriyorum",
+              "suffix": "-iyor-um",
+              "meaning": "ich gebe (gerade)"
+            },
+            "2sg": {
+              "full_word": "veriyorsun",
+              "suffix": "-iyor-sun",
+              "meaning": "du gibst (gerade)"
+            },
+            "3sg": {
+              "full_word": "veriyor",
+              "suffix": "-iyor",
+              "meaning": "er/sie gibt (gerade)"
+            },
+            "1pl": {
+              "full_word": "veriyoruz",
+              "suffix": "-iyor-uz",
+              "meaning": "wir geben (gerade)"
+            },
+            "2pl": {
+              "full_word": "veriyorsunuz",
+              "suffix": "-iyor-sunuz",
+              "meaning": "ihr gebt (gerade)"
+            },
+            "3pl": {
+              "full_word": "veriyorlar",
+              "suffix": "-iyor-lar",
+              "meaning": "sie geben (gerade)"
+            }
+          },
+          "ir": {
+            "1sg": {
+              "full_word": "veririm",
+              "suffix": "-ir-im",
+              "meaning": "ich gebe (gewöhnlich)"
+            },
+            "2sg": {
+              "full_word": "verirsin",
+              "suffix": "-ir-sin",
+              "meaning": "du gibst (gewöhnlich)"
+            },
+            "3sg": {
+              "full_word": "verir",
+              "suffix": "-ir",
+              "meaning": "er/sie gibt (gewöhnlich)"
+            },
+            "1pl": {
+              "full_word": "veririz",
+              "suffix": "-ir-iz",
+              "meaning": "wir geben (gewöhnlich)"
+            },
+            "2pl": {
+              "full_word": "verirsiniz",
+              "suffix": "-ir-siniz",
+              "meaning": "ihr gebt (gewöhnlich)"
+            },
+            "3pl": {
+              "full_word": "verirler",
+              "suffix": "-ir-ler",
+              "meaning": "sie geben (gewöhnlich)"
+            }
+          },
+          "ecek": {
+            "1sg": {
+              "full_word": "vereceğim",
+              "suffix": "-ecek-im",
+              "meaning": "ich werde geben"
+            },
+            "2sg": {
+              "full_word": "vereceksin",
+              "suffix": "-ecek-sin",
+              "meaning": "du wirst geben"
+            },
+            "3sg": {
+              "full_word": "verecek",
+              "suffix": "-ecek",
+              "meaning": "er/sie wird geben"
+            },
+            "1pl": {
+              "full_word": "vereceğiz",
+              "suffix": "-ecek-iz",
+              "meaning": "wir werden geben"
+            },
+            "2pl": {
+              "full_word": "vereceksiniz",
+              "suffix": "-ecek-siniz",
+              "meaning": "ihr werdet geben"
+            },
+            "3pl": {
+              "full_word": "verecekler",
+              "suffix": "-ecek-ler",
+              "meaning": "sie werden geben"
+            }
+          },
+          "meli": {
+            "1sg": {
+              "full_word": "vermeliyim",
+              "suffix": "-meli-yim",
+              "meaning": "ich muss geben"
+            },
+            "2sg": {
+              "full_word": "vermelisin",
+              "suffix": "-meli-sin",
+              "meaning": "du musst geben"
+            },
+            "3sg": {
+              "full_word": "vermeli",
+              "suffix": "-meli",
+              "meaning": "er/sie muss geben"
+            },
+            "1pl": {
+              "full_word": "vermeliyiz",
+              "suffix": "-meli-yiz",
+              "meaning": "wir muessen geben"
+            },
+            "2pl": {
+              "full_word": "vermelisiniz",
+              "suffix": "-meli-siniz",
+              "meaning": "ihr muesst geben"
+            },
+            "3pl": {
+              "full_word": "vermeliler",
+              "suffix": "-meli-ler",
+              "meaning": "sie muessen geben"
+            }
+          }
+        },
+        "stem_alternatives": [
+          {
+            "stem": "ver",
+            "full_word": "verdi",
+            "meaning": "gab (geben)"
+          },
+          {
+            "stem": "al",
+            "full_word": "aldi",
+            "meaning": "nahm (nehmen)"
+          },
+          {
+            "stem": "gonder",
+            "full_word": "gonderdi",
+            "meaning": "schickte (schicken)"
+          },
+          {
+            "stem": "getir",
+            "full_word": "getirdi",
+            "meaning": "brachte (bringen)"
+          },
+          {
+            "stem": "goster",
+            "full_word": "gosterdi",
+            "meaning": "zeigte (zeigen)"
+          },
+          {
+            "stem": "oku",
+            "full_word": "okudu",
+            "meaning": "las (lesen)"
+          },
+          {
+            "stem": "sev",
+            "full_word": "sevdi",
+            "meaning": "liebte (lieben)"
+          }
+        ],
+        "negation": {
+          "stem": "ver",
+          "negation_suffix": "-me / -ma",
+          "forms": [
+            {
+              "suffix": "-me-di",
+              "neg_suffix": "-me",
+              "tense_suffix": "-di",
+              "function": "Verneinung+Verg.",
+              "full_word": "vermedi",
+              "meaning": "gab nicht",
+              "description": "Verneinung Vergangenheit"
+            },
+            {
+              "suffix": "-mi-yor",
+              "neg_suffix": "-mi",
+              "tense_suffix": "-yor",
+              "function": "Verneinung+Praes.",
+              "full_word": "vermiyor",
+              "meaning": "gibt nicht",
+              "description": "Verneinung Praesens"
+            },
+            {
+              "suffix": "-mez",
+              "neg_suffix": "-mez",
+              "tense_suffix": "",
+              "function": "Verneinung+Aorist",
+              "full_word": "vermez",
+              "meaning": "gibt nie",
+              "description": "Verneinung Aorist"
+            },
+            {
+              "suffix": "-me-yecek",
+              "neg_suffix": "-me",
+              "tense_suffix": "-yecek",
+              "function": "Verneinung+Futur",
+              "full_word": "vermeyecek",
+              "meaning": "wird nicht geben",
+              "description": "Verneinung Futur"
+            },
+            {
+              "suffix": "-me-miş",
+              "neg_suffix": "-me",
+              "tense_suffix": "-miş",
+              "function": "Verneinung+mis-Verg.",
+              "full_word": "vermemiş",
+              "meaning": "soll nicht gegeben haben",
+              "description": "Verneinung Hoerensagen"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

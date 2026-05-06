@@ -1,0 +1,71 @@
+{
+  "sentence": {
+    "description": "Ich habe gestern in der Schule Türkisch gelernt.",
+    "language": "tr",
+    "words": [
+      {
+        "role": "Subjekt",
+        "role_de": "Subjekt",
+        "full_word": "Ben",
+        "stem": "Ben",
+        "suffixes": [],
+        "meaning": "ich"
+      },
+      {
+        "role": "Zeitangabe",
+        "role_de": "Zeitangabe (Adverb)",
+        "full_word": "dün",
+        "stem": "dün",
+        "suffixes": [],
+        "meaning": "gestern"
+      },
+      {
+        "role": "Ortsangabe",
+        "role_de": "Ortsangabe (Lokativ)",
+        "full_word": "okulda",
+        "stem": "okul",
+        "suffixes": [
+          {
+            "suffix": "-da",
+            "function": "Lokativ-Suffix",
+            "description": "Ortsangabe (wo?)"
+          }
+        ],
+        "meaning": "in der Schule"
+      },
+      {
+        "role": "Direktes Objekt",
+        "role_de": "Direktes Objekt (Akkusativ)",
+        "full_word": "Türkçe",
+        "stem": "Türk",
+        "suffixes": [
+          {
+            "suffix": "-çe",
+            "function": "Sprach-Suffix",
+            "description": "bildet Sprachbezeichnungen"
+          }
+        ],
+        "meaning": "Türkisch"
+      },
+      {
+        "role": "Verb",
+        "role_de": "Verb (Prädikat)",
+        "full_word": "öğrendim",
+        "stem": "öğren",
+        "suffixes": [
+          {
+            "suffix": "-di",
+            "function": "Vergangenheit",
+            "description": "bestimmte Vergangenheit (di-Vergangenheit)"
+          },
+          {
+            "suffix": "-m",
+            "function": "Personalsuffix",
+            "description": "1. Person Singular (ich)"
+          }
+        ],
+        "meaning": "ich habe gelernt"
+      }
+    ]
+  }
+}

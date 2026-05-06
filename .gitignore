@@ -1,0 +1,21 @@
+# Python development scripts (not needed for runtime)
+add_*.py
+fix_*.py
+rebuild*.py
+restore*.py
+check*.py
+check*.js
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor files
+.vscode/
+*.swp
+*.swo
+*~
+
+# Batch files (Windows-specific, not needed for deployment)
+serve.bat
