@@ -355,14 +355,14 @@ function getFragewortDE(word) {
 }
 
 
-// Show Genitiv endings popup - all persons with vowel harmony for selected word
+// Show Genitiv endings popup - noun genitive suffixes with vowel harmony
 function showGenitivPopup(event, wordIdx) {
     clearTimeout(stemPopupTimer);
     hideStemPopup();
     var word = currentSentence.words[wordIdx];
     if (!word || !word.possessive || !word.possessive.active) return;
-    var owner = word.possessive.owners[word.possessive.selected_owner];
-    var ownerStem = owner.stem;
+    var selectedOwner = word.possessive.selected_owner;
+    var owner = word.possessive.owners[selectedOwner];
 
     var popup = document.createElement('div');
     popup.className = 'popup-panel visible';
@@ -370,40 +370,29 @@ function showGenitivPopup(event, wordIdx) {
     popup.onmouseenter = function() { clearTimeout(stemPopupTimer); };
     popup.onmouseleave = function() { scheduleStemPopupHide(); };
 
-    // Compute genitive suffix for each person pronoun based on vowel harmony
-    var genitivePersons = [
-        {person: '1.Sg', pronoun: 'ben', form: 'benim', meaning: 'mein(e)'},
-        {person: '2.Sg', pronoun: 'sen', form: 'senin', meaning: 'dein(e)'},
-        {person: '3.Sg', pronoun: 'o', form: 'onun', meaning: 'sein(e)/ihr(e)'},
-        {person: '1.Pl', pronoun: 'biz', form: 'bizim', meaning: 'unser(e)'},
-        {person: '2.Pl', pronoun: 'siz', form: 'sizin', meaning: 'euer/Ihr(e)'},
-        {person: '3.Pl', pronoun: 'onlar', form: 'onlar\u0131n', meaning: 'ihr(e) (Pl.)'}
-    ];
-
-    // Also show how the selected noun gets genitive
-    var lastV = getLastVowel(ownerStem);
-    var lastChar = ownerStem[ownerStem.length - 1];
-    var endsInVowel = allVowelsStr.indexOf(lastChar) !== -1;
-    var vGross = harmonizeGross(lastV);
-    var nounGenSuffix = endsInVowel ? '-n' + vGross + 'n' : '-' + vGross + 'n';
-    var nounGenForm = ownerStem + (endsInVowel ? 'n' + vGross + 'n' : vGross + 'n');
-
-    var html = '<div class="variations-title" style="font-size:1em;margin-bottom:6px;">Genitiv-Endungen (Wessen?)</div>';
+    var html = '<div class="variations-title" style="font-size:1em;margin-bottom:6px;">Genitiv-Suffixe (Wessen?)</div>';
     html += '<div style="font-size:0.8em;color:#666;margin-bottom:10px;text-align:center;">Aktuell: <b>' + owner.genitive + '</b> (' + owner.meaning + ')</div>';
 
     html += '<table class="pe-table">';
-    html += '<tr><th>Person</th><th>Pronomen</th><th>Genitiv</th><th>Bedeutung</th></tr>';
-    genitivePersons.forEach(function(gp) {
-        html += '<tr>';
-        html += '<td class="pe-person">' + gp.person + '</td>';
-        html += '<td class="pe-ending">' + gp.pronoun + '</td>';
-        html += '<td class="pe-fullword">' + gp.form + '</td>';
-        html += '<td class="pe-meaning">' + gp.meaning + '</td>';
+    html += '<tr><th>Substantiv</th><th>Suffix</th><th>Genitiv-Form</th><th>Bedeutung</th></tr>';
+
+    // Show all noun owners (filter out pronouns)
+    word.possessive.owners.forEach(function(o, idx) {
+        var isActive = (idx === selectedOwner);
+        var rowClass = isActive ? ' class="pe-active"' : '';
+        html += '<tr' + rowClass + '>';
+        html += '<td class="pe-person">' + o.stem + '</td>';
+        html += '<td class="pe-ending">' + o.suffix + '</td>';
+        html += '<td class="pe-fullword">' + o.genitive + '</td>';
+        html += '<td class="pe-meaning">' + o.meaning + '</td>';
         html += '</tr>';
     });
-    // Add the noun genitive form
-    html += '<tr style="border-top:2px solid #ddd;"><td class="pe-person">Nomen</td><td class="pe-ending">' + ownerStem + '</td><td class="pe-fullword">' + nounGenForm + '</td><td class="pe-meaning">' + nounGenSuffix + '</td></tr>';
     html += '</table>';
+
+    // Rules summary
+    html += '<div style="margin-top:8px;padding-top:6px;border-top:1px solid #eee;font-size:0.72em;color:#888;text-align:center;">';
+    html += 'Nach Konsonant: <b>-(I)n</b> | Nach Vokal: <b>-n(I)n</b> | I = Vokalharmonie (\u0131/i/u/\u00fc)';
+    html += '</div>';
 
     popup.innerHTML = html;
     document.body.appendChild(popup);
