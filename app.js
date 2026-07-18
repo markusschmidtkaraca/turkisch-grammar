@@ -355,12 +355,14 @@ function getFragewortDE(word) {
 }
 
 
-// Show Genitiv endings popup (all forms)
+// Show Genitiv endings popup - all persons with vowel harmony for selected word
 function showGenitivPopup(event, wordIdx) {
     clearTimeout(stemPopupTimer);
     hideStemPopup();
     var word = currentSentence.words[wordIdx];
     if (!word || !word.possessive || !word.possessive.active) return;
+    var owner = word.possessive.owners[word.possessive.selected_owner];
+    var ownerStem = owner.stem;
 
     var popup = document.createElement('div');
     popup.className = 'popup-panel visible';
@@ -368,30 +370,40 @@ function showGenitivPopup(event, wordIdx) {
     popup.onmouseenter = function() { clearTimeout(stemPopupTimer); };
     popup.onmouseleave = function() { scheduleStemPopupHide(); };
 
-    var html = '<div class="variations-title" style="font-size:1em;margin-bottom:6px;">Genitiv-Suffixe (Besitzer)</div>';
-    html += '<div style="font-size:0.8em;color:#666;margin-bottom:10px;text-align:center;">Wessen? \u2013 -(n)\u0131n / -(n)in / -(n)un / -(n)\u00fcn</div>';
+    // Compute genitive suffix for each person pronoun based on vowel harmony
+    var genitivePersons = [
+        {person: '1.Sg', pronoun: 'ben', form: 'benim', meaning: 'mein(e)'},
+        {person: '2.Sg', pronoun: 'sen', form: 'senin', meaning: 'dein(e)'},
+        {person: '3.Sg', pronoun: 'o', form: 'onun', meaning: 'sein(e)/ihr(e)'},
+        {person: '1.Pl', pronoun: 'biz', form: 'bizim', meaning: 'unser(e)'},
+        {person: '2.Pl', pronoun: 'siz', form: 'sizin', meaning: 'euer/Ihr(e)'},
+        {person: '3.Pl', pronoun: 'onlar', form: 'onlar\u0131n', meaning: 'ihr(e) (Pl.)'}
+    ];
+
+    // Also show how the selected noun gets genitive
+    var lastV = getLastVowel(ownerStem);
+    var lastChar = ownerStem[ownerStem.length - 1];
+    var endsInVowel = allVowelsStr.indexOf(lastChar) !== -1;
+    var vGross = harmonizeGross(lastV);
+    var nounGenSuffix = endsInVowel ? '-n' + vGross + 'n' : '-' + vGross + 'n';
+    var nounGenForm = ownerStem + (endsInVowel ? 'n' + vGross + 'n' : vGross + 'n');
+
+    var html = '<div class="variations-title" style="font-size:1em;margin-bottom:6px;">Genitiv-Endungen (Wessen?)</div>';
+    html += '<div style="font-size:0.8em;color:#666;margin-bottom:10px;text-align:center;">Aktuell: <b>' + owner.genitive + '</b> (' + owner.meaning + ')</div>';
 
     html += '<table class="pe-table">';
-    html += '<tr><th>Besitzer</th><th>Suffix</th><th>Genitiv-Form</th><th>Bedeutung</th></tr>';
-
-    var owners = word.possessive.owners;
-    var selectedOwner = word.possessive.selected_owner;
-    owners.forEach(function(o, idx) {
-        var isActive = (idx === selectedOwner);
-        var rowClass = isActive ? ' class="pe-active"' : '';
-        html += '<tr' + rowClass + '>';
-        html += '<td class="pe-person">' + o.stem + '</td>';
-        html += '<td class="pe-ending">' + o.suffix + '</td>';
-        html += '<td class="pe-fullword">' + o.genitive + '</td>';
-        html += '<td class="pe-meaning">' + o.meaning + '</td>';
+    html += '<tr><th>Person</th><th>Pronomen</th><th>Genitiv</th><th>Bedeutung</th></tr>';
+    genitivePersons.forEach(function(gp) {
+        html += '<tr>';
+        html += '<td class="pe-person">' + gp.person + '</td>';
+        html += '<td class="pe-ending">' + gp.pronoun + '</td>';
+        html += '<td class="pe-fullword">' + gp.form + '</td>';
+        html += '<td class="pe-meaning">' + gp.meaning + '</td>';
         html += '</tr>';
     });
+    // Add the noun genitive form
+    html += '<tr style="border-top:2px solid #ddd;"><td class="pe-person">Nomen</td><td class="pe-ending">' + ownerStem + '</td><td class="pe-fullword">' + nounGenForm + '</td><td class="pe-meaning">' + nounGenSuffix + '</td></tr>';
     html += '</table>';
-
-    // Rules explanation
-    html += '<div style="margin-top:10px;padding-top:8px;border-top:1px solid #eee;font-size:0.72em;color:#888;text-align:center;">';
-    html += '<b>Regeln:</b> Nach Konsonant: -\u0131n/-in/-un/-\u00fcn | Nach Vokal: -n\u0131n/-nin/-nun/-n\u00fcn | Pronomen: eigene Formen';
-    html += '</div>';
 
     popup.innerHTML = html;
     document.body.appendChild(popup);
@@ -401,12 +413,14 @@ function showGenitivPopup(event, wordIdx) {
     popup.style.top = (rect.bottom + 8 + window.scrollY) + 'px';
 }
 
-// Show Possessiv endings popup (all forms)
+// Show Possessiv endings popup - all persons with vowel harmony for selected word
 function showPossessivPopup(event, wordIdx) {
     clearTimeout(stemPopupTimer);
     hideStemPopup();
     var word = currentSentence.words[wordIdx];
     if (!word || !word.possessive || !word.possessive.active) return;
+    var possession = word.possessive.possessions[word.possessive.selected_possession];
+    var stem = possession.stem;
 
     var popup = document.createElement('div');
     popup.className = 'popup-panel visible';
@@ -414,39 +428,55 @@ function showPossessivPopup(event, wordIdx) {
     popup.onmouseenter = function() { clearTimeout(stemPopupTimer); };
     popup.onmouseleave = function() { scheduleStemPopupHide(); };
 
-    var html = '<div class="variations-title" style="font-size:1em;margin-bottom:6px;">Possessiv-Suffixe (Besitz)</div>';
-    html += '<div style="font-size:0.8em;color:#666;margin-bottom:10px;text-align:center;">Besitzzugeh\u00f6rigkeit \u2013 -(s)\u0131 / -(s)i / -(s)u / -(s)\u00fc</div>';
+    // Compute possessive suffix for each person based on vowel harmony of the stem
+    var lastV = getLastVowel(stem);
+    var lastChar = stem[stem.length - 1];
+    var endsInVowel = allVowelsStr.indexOf(lastChar) !== -1;
+    var vGross = harmonizeGross(lastV);
+
+    var possPersons = [];
+    // 1.Sg: -(I)m
+    var s1 = endsInVowel ? '-m' : '-' + vGross + 'm';
+    var f1 = stem + (endsInVowel ? 'm' : vGross + 'm');
+    possPersons.push({person: '1.Sg', suffix: s1, form: f1, meaning: 'mein(e) ' + possession.meaning});
+    // 2.Sg: -(I)n
+    var s2 = endsInVowel ? '-n' : '-' + vGross + 'n';
+    var f2 = stem + (endsInVowel ? 'n' : vGross + 'n');
+    possPersons.push({person: '2.Sg', suffix: s2, form: f2, meaning: 'dein(e) ' + possession.meaning});
+    // 3.Sg: -(s)I
+    var s3 = endsInVowel ? '-s' + vGross : '-' + vGross;
+    var f3 = stem + (endsInVowel ? 's' + vGross : vGross);
+    possPersons.push({person: '3.Sg', suffix: s3, form: f3, meaning: 'sein(e) ' + possession.meaning});
+    // 1.Pl: -(I)mIz
+    var s4 = endsInVowel ? '-m' + vGross + 'z' : '-' + vGross + 'm' + vGross + 'z';
+    var f4 = stem + (endsInVowel ? 'm' + vGross + 'z' : vGross + 'm' + vGross + 'z');
+    possPersons.push({person: '1.Pl', suffix: s4, form: f4, meaning: 'unser(e) ' + possession.meaning});
+    // 2.Pl: -(I)nIz
+    var s5 = endsInVowel ? '-n' + vGross + 'z' : '-' + vGross + 'n' + vGross + 'z';
+    var f5 = stem + (endsInVowel ? 'n' + vGross + 'z' : vGross + 'n' + vGross + 'z');
+    possPersons.push({person: '2.Pl', suffix: s5, form: f5, meaning: 'euer/Ihr(e) ' + possession.meaning});
+    // 3.Pl: -lArI
+    var plV = harmonizeKlein(lastV);
+    var s6 = '-l' + plV + 'r' + vGross;
+    var f6 = stem + 'l' + plV + 'r' + vGross;
+    possPersons.push({person: '3.Pl', suffix: s6, form: f6, meaning: 'ihr(e) ' + possession.meaning + ' (Pl.)'});
+
+    var html = '<div class="variations-title" style="font-size:1em;margin-bottom:6px;">Possessiv-Endungen (' + stem + ')</div>';
+    html += '<div style="font-size:0.8em;color:#666;margin-bottom:10px;text-align:center;">Aktuell: <b>' + possession.possessed + '</b> (' + possession.meaning + ')</div>';
 
     html += '<table class="pe-table">';
-    html += '<tr><th>Besitz</th><th>Suffix</th><th>Possessiv-Form</th><th>Bedeutung</th></tr>';
-
-    var possessions = word.possessive.possessions;
-    var selectedPossession = word.possessive.selected_possession;
-    possessions.forEach(function(p, idx) {
-        var isActive = (idx === selectedPossession);
+    html += '<tr><th>Person</th><th>Suffix</th><th>Form</th><th>Bedeutung</th></tr>';
+    possPersons.forEach(function(pp) {
+        var isActive = (pp.person === '3.Sg');
         var rowClass = isActive ? ' class="pe-active"' : '';
         html += '<tr' + rowClass + '>';
-        html += '<td class="pe-person">' + p.stem + '</td>';
-        html += '<td class="pe-ending">' + p.suffix + '</td>';
-        html += '<td class="pe-fullword">' + p.possessed + '</td>';
-        html += '<td class="pe-meaning">' + p.meaning + '</td>';
+        html += '<td class="pe-person">' + pp.person + '</td>';
+        html += '<td class="pe-ending">' + pp.suffix + '</td>';
+        html += '<td class="pe-fullword">' + pp.form + '</td>';
+        html += '<td class="pe-meaning">' + pp.meaning + '</td>';
         html += '</tr>';
     });
     html += '</table>';
-
-    // Person-based possessive overview
-    html += '<div style="margin-top:12px;padding-top:8px;border-top:1px solid #eee;">';
-    html += '<div style="font-size:0.8em;font-weight:600;color:#555;text-align:center;margin-bottom:6px;">Possessiv nach Person (3.Sg = sein/ihr)</div>';
-    html += '<table class="pe-table" style="font-size:0.85em;">';
-    html += '<tr><th>Person</th><th>Suffix (nach Kons.)</th><th>Suffix (nach Vokal)</th><th>Beispiel</th></tr>';
-    html += '<tr><td>1.Sg (mein)</td><td>-\u0131m/-im/-um/-\u00fcm</td><td>-m</td><td>evim, arabam</td></tr>';
-    html += '<tr><td>2.Sg (dein)</td><td>-\u0131n/-in/-un/-\u00fcn</td><td>-n</td><td>evin, araban</td></tr>';
-    html += '<tr class="pe-active"><td>3.Sg (sein/ihr)</td><td>-\u0131/-i/-u/-\u00fc</td><td>-s\u0131/-si/-su/-s\u00fc</td><td>evi, arabas\u0131</td></tr>';
-    html += '<tr><td>1.Pl (unser)</td><td>-\u0131m\u0131z/-imiz/-umuz/-\u00fcm\u00fcz</td><td>-m\u0131z/-miz</td><td>evimiz</td></tr>';
-    html += '<tr><td>2.Pl (euer)</td><td>-\u0131n\u0131z/-iniz/-unuz/-\u00fcn\u00fcz</td><td>-n\u0131z/-niz</td><td>eviniz</td></tr>';
-    html += '<tr><td>3.Pl (ihr)</td><td>-lar\u0131/-leri</td><td>-lar\u0131/-leri</td><td>evleri</td></tr>';
-    html += '</table>';
-    html += '</div>';
 
     popup.innerHTML = html;
     document.body.appendChild(popup);
@@ -455,6 +485,7 @@ function showPossessivPopup(event, wordIdx) {
     popup.style.left = Math.max(10, rect.left - 80) + 'px';
     popup.style.top = (rect.bottom + 8 + window.scrollY) + 'px';
 }
+
 
 function loadSentence(jsonPath) {
     fetch(jsonPath).then(function(r) { if (!r.ok) throw new Error('Nicht gefunden: '+jsonPath); return r.json(); })
