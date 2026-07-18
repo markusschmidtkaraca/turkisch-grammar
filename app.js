@@ -148,6 +148,14 @@ function getPersonLabel(person) {
     var labels = {'1sg':'1.Sg (ich)','2sg':'2.Sg (du)','3sg':'3.Sg (er/sie/es)','1pl':'1.Pl (wir)','2pl':'2.Pl (ihr/Sie)','3pl':'3.Pl (sie)'};
     return labels[person] || person;
 }
+function getPersonLabelShort(person) {
+    var labels = {'1sg':'1.Sg','2sg':'2.Sg','3sg':'3.Sg','1pl':'1.Pl','2pl':'2.Pl','3pl':'3.Pl'};
+    return labels[person] || person;
+}
+function getPersonLabelDeutsch(person) {
+    var labels = {'1sg':'ich','2sg':'du','3sg':'er/sie/es','1pl':'wir','2pl':'ihr/Sie','3pl':'sie (Pl.)'};
+    return labels[person] || person;
+}
 // Adjective predicate personal endings (copula)
 function getAdjPersonalEnding(adjStem, person) {
     if (!adjStem || !person) return '\u2205';
@@ -169,6 +177,181 @@ function getAdjPersonalEnding(adjStem, person) {
         return '\u2205';
     }
     return '\u2205';
+}
+
+
+// Show personal ending popup for verbs (all persons overview)
+function showPersonalEndingPopup(event, wordIdx) {
+    clearTimeout(stemPopupTimer);
+    hideStemPopup();
+    var word = currentSentence.words[wordIdx];
+    if (!word || word.role !== 'Verb') return;
+    var tense = word.current_tense || 'di';
+    var currentPerson = getCurrentPerson();
+    var peType = getPersonalEndingType(tense);
+    var peTypeLabel = peType === 1 ? 'Typ I (k-Typ)' : 'Typ II (z-Typ)';
+    var tenseLabels = {
+        'di': 'di-Vergangenheit',
+        'iyor': 'Pr\u00e4sens (-iyor)',
+        'ir': 'Aorist (-ir)',
+        'ecek': 'Futur (-ecek)',
+        'mis': 'mi\u015f-Vergangenheit',
+        'meli': 'Notwendigkeit (-meli)'
+    };
+    var tenseLabel = tenseLabels[tense] || tense;
+
+    var popup = document.createElement('div');
+    popup.className = 'popup-panel visible';
+    popup.id = 'stem-popup';
+    popup.onmouseenter = function() { clearTimeout(stemPopupTimer); };
+    popup.onmouseleave = function() { scheduleStemPopupHide(); };
+
+    var html = '<div class="variations-title" style="font-size:1em;margin-bottom:6px;">Personalendungen \u2013 ' + peTypeLabel + '</div>';
+    html += '<div style="font-size:0.8em;color:#666;margin-bottom:10px;text-align:center;">' + tenseLabel + ' \u2013 Stamm: <b>' + word.stem + '</b></div>';
+
+    // Table with all persons
+    html += '<table class="pe-table">';
+    html += '<tr><th>Person</th><th>Endung</th><th>Vollform</th><th>Bedeutung</th></tr>';
+
+    var persons = ['1sg', '2sg', '3sg', '1pl', '2pl', '3pl'];
+    persons.forEach(function(p) {
+        var isActive = (p === currentPerson);
+        var rowClass = isActive ? ' class="pe-active"' : '';
+        var ending = '';
+        var fullWord = '';
+        var meaning = '';
+
+        if (word.conjugation && word.conjugation[tense] && word.conjugation[tense][p]) {
+            var form = word.conjugation[tense][p];
+            var parts = form.suffix.split('-').filter(function(part) { return part !== ''; });
+            if (parts.length >= 2) {
+                ending = '-' + parts[parts.length - 1];
+            } else {
+                ending = '\u2205';
+            }
+            fullWord = form.full_word;
+            meaning = form.meaning;
+        } else {
+            ending = getDefaultPersonalEnding(p, tense);
+            fullWord = '';
+            meaning = '';
+        }
+
+        var endingDisplay = (ending === '\u2205') ? '\u2205' : ending;
+        html += '<tr' + rowClass + '>';
+        html += '<td class="pe-person">' + getPersonLabelShort(p) + ' <span class="pe-deutsch">(' + getPersonLabelDeutsch(p) + ')</span></td>';
+        html += '<td class="pe-ending">' + endingDisplay + '</td>';
+        html += '<td class="pe-fullword">' + fullWord + '</td>';
+        html += '<td class="pe-meaning">' + meaning + '</td>';
+        html += '</tr>';
+    });
+    html += '</table>';
+
+    // Type comparison info
+    html += '<div style="margin-top:10px;padding-top:8px;border-top:1px solid #eee;font-size:0.75em;color:#888;text-align:center;">';
+    html += '<b>Typ I (k-Typ):</b> -m, -n, \u2205, -k, -niz, -ler &nbsp;|&nbsp; ';
+    html += '<b>Typ II (z-Typ):</b> -im, -sin, \u2205, -iz, -siniz, -ler';
+    html += '</div>';
+
+    popup.innerHTML = html;
+    document.body.appendChild(popup);
+    stemPopupElement = popup;
+    var rect = event.target.closest('.suffix-box').getBoundingClientRect();
+    popup.style.left = Math.max(10, rect.left - 80) + 'px';
+    popup.style.top = (rect.bottom + 8 + window.scrollY) + 'px';
+}
+
+// Show personal ending popup for adjectives (copula, all persons)
+function showAdjPersonalEndingPopup(event, wordIdx) {
+    clearTimeout(stemPopupTimer);
+    hideStemPopup();
+    var word = currentSentence.words[wordIdx];
+    if (!word || word.role !== 'Adjektiv' || !word.full_word) return;
+    var currentPerson = getCurrentPerson();
+    var adjStem = word.full_word;
+
+    var popup = document.createElement('div');
+    popup.className = 'popup-panel visible';
+    popup.id = 'stem-popup';
+    popup.onmouseenter = function() { clearTimeout(stemPopupTimer); };
+    popup.onmouseleave = function() { scheduleStemPopupHide(); };
+
+    var html = '<div class="variations-title" style="font-size:1em;margin-bottom:6px;">Personalendungen (Kopula) \u2013 Typ II</div>';
+    html += '<div style="font-size:0.8em;color:#666;margin-bottom:10px;text-align:center;">Adjektiv als Pr\u00e4dikat: <b>' + adjStem + '</b></div>';
+
+    html += '<table class="pe-table">';
+    html += '<tr><th>Person</th><th>Endung</th><th>Vollform</th></tr>';
+
+    var persons = ['1sg', '2sg', '3sg', '1pl', '2pl', '3pl'];
+    persons.forEach(function(p) {
+        var isActive = (p === currentPerson);
+        var rowClass = isActive ? ' class="pe-active"' : '';
+        var ending = getAdjPersonalEnding(adjStem, p);
+        var endingDisplay = (ending === '\u2205') ? '\u2205' : ending;
+        var fullForm = adjStem;
+        if (ending !== '\u2205') {
+            fullForm = adjStem + ending.replace(/^-/, '');
+        }
+
+        html += '<tr' + rowClass + '>';
+        html += '<td class="pe-person">' + getPersonLabelShort(p) + ' <span class="pe-deutsch">(' + getPersonLabelDeutsch(p) + ')</span></td>';
+        html += '<td class="pe-ending">' + endingDisplay + '</td>';
+        html += '<td class="pe-fullword">' + fullForm + '</td>';
+        html += '</tr>';
+    });
+    html += '</table>';
+
+    popup.innerHTML = html;
+    document.body.appendChild(popup);
+    stemPopupElement = popup;
+    var rect = event.target.closest('.suffix-box').getBoundingClientRect();
+    popup.style.left = Math.max(10, rect.left - 80) + 'px';
+    popup.style.top = (rect.bottom + 8 + window.scrollY) + 'px';
+}
+
+
+// Get the question pronoun for a given sentence role
+function getFragewort(word) {
+    if (!word || !word.role) return '';
+    switch(word.role) {
+        case 'Subjekt':
+            return 'Kim? / Ne?';
+        case 'Direktes Objekt':
+            return 'Kimi? / Neyi?';
+        case 'Indirektes Objekt':
+            return 'Kime? / Neye?';
+        case 'Herkunftsangabe':
+            return 'Kimden? / Nereden?';
+        case 'Ortsangabe':
+            return 'Kimde? / Nerede?';
+        case 'Adjektiv':
+            return 'Nas\u0131l?';
+        case 'Adverb':
+            return 'Nas\u0131l? / Ne zaman?';
+        default:
+            return '';
+    }
+}
+function getFragewortDE(word) {
+    if (!word || !word.role) return '';
+    switch(word.role) {
+        case 'Subjekt':
+            return 'Wer? / Was?';
+        case 'Direktes Objekt':
+            return 'Wen? / Was?';
+        case 'Indirektes Objekt':
+            return 'Wem?';
+        case 'Herkunftsangabe':
+            return 'Woher?';
+        case 'Ortsangabe':
+            return 'Wo?';
+        case 'Adjektiv':
+            return 'Wie?';
+        case 'Adverb':
+            return 'Wie? / Wann?';
+        default:
+            return '';
+    }
 }
 
 function loadSentence(jsonPath) {
@@ -250,6 +433,14 @@ function renderSentence(sentence) {
         var isEmpty = !word.full_word || word.full_word === '' || word._hiddenByPredicative;
         var emptyClass = isEmpty ? ' empty-word' : '';
         var predicativeClass = (word.role === 'Adjektiv' && word._predicative) ? ' predicative-adj' : '';
+        var fragewort = getFragewort(word);
+        var fragewortDE = getFragewortDE(word);
+        if (fragewort && word.role !== 'Verb') {
+            html += '<div class="word-wrapper">';
+            html += '<div class="fragewort-box"><span class="fragewort-tr">' + fragewort + '</span><span class="fragewort-de">' + fragewortDE + '</span></div>';
+        } else {
+            html += '<div class="word-wrapper">';
+        }
         html += '<div class="word-box'+wordClickClass+emptyClass+predicativeClass+'"'+wordClickAttr+'>';
         if (isEmpty) {
             var hiddenLabel = word._hiddenByPredicative ? '(entf\u00e4llt bei Pr\u00e4dikat-Adj.)' : '(nicht verwendet)';
@@ -378,7 +569,7 @@ function renderSentence(sentence) {
             var predActive = word._predicative ? true : false;
             var adjPeStyle = predActive ? 'background:#e0f7fa;border-color:#26c6da;' : 'background:#e0f7fa;border-color:#26c6da;opacity:0.5;';
             html += '<div class="connector">+</div>';
-            html += '<div class="suffix-box clickable" style="'+adjPeStyle+'" onclick="event.stopPropagation();togglePredicative('+wordIdx+')">';
+            html += '<div class="suffix-box clickable" style="'+adjPeStyle+'" onclick="event.stopPropagation();togglePredicative('+wordIdx+')" onmouseenter="showAdjPersonalEndingPopup(event,'+wordIdx+')" onmouseleave="scheduleStemPopupHide()">';
             html += '<div class="morph-text">'+adjEndingDisplay+'</div>';
             html += '<div class="morph-label">'+(predActive ? '= Pr\u00e4dikat' : 'Personalendung')+'</div>';
             html += '<div class="morph-description">'+getPersonLabel(adjPerson)+' \u2013 Typ II (z-Typ)'+(predActive ? '' : ' (optional)')+'</div>';
@@ -394,7 +585,7 @@ function renderSentence(sentence) {
             var peTypeLabel = peType === 1 ? 'Typ I (k-Typ)' : 'Typ II (z-Typ)';
             var endingDisplay = persEnding === '\u2205' ? '\u2205' : highlightVowels(persEnding.replace(/^-/, ''));
             html += '<div class="connector">+</div>';
-            html += '<div class="suffix-box" style="'+peStyle+'">';
+            html += '<div class="suffix-box" style="'+peStyle+'" onmouseenter="showPersonalEndingPopup(event,'+wordIdx+')" onmouseleave="scheduleStemPopupHide()">';
             html += '<div class="morph-text">'+endingDisplay+'</div>';
             html += '<div class="morph-label">Personalendung</div>';
             html += '<div class="morph-description">'+getPersonLabel(person)+' \u2013 '+peTypeLabel+'</div>';
@@ -411,6 +602,7 @@ function renderSentence(sentence) {
         }
         html += '</div>'; // morph-boxes
         html += '</div>'; // word-box
+        html += '</div>'; // word-wrapper
     });
     html += '</div>'; // sentence-container
     html += '<div id="variations-panel" style="display:none;"></div>';
