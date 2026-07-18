@@ -355,7 +355,7 @@ function getFragewortDE(word) {
 }
 
 
-// Show Genitiv endings popup - noun genitive suffixes with vowel harmony
+// Show Genitiv endings popup - all persons with correct vowel
 function showGenitivPopup(event, wordIdx) {
     clearTimeout(stemPopupTimer);
     hideStemPopup();
@@ -363,6 +363,14 @@ function showGenitivPopup(event, wordIdx) {
     if (!word || !word.possessive || !word.possessive.active) return;
     var selectedOwner = word.possessive.selected_owner;
     var owner = word.possessive.owners[selectedOwner];
+    var ownerStem = owner.stem;
+
+    // Compute the genitive suffix for the selected noun
+    var lastV = getLastVowel(ownerStem);
+    var lastChar = ownerStem[ownerStem.length - 1];
+    var endsInVowel = allVowelsStr.indexOf(lastChar) !== -1;
+    var vGross = harmonizeGross(lastV);
+    var nounSuffix = endsInVowel ? '-n' + vGross + 'n' : '-' + vGross + 'n';
 
     var popup = document.createElement('div');
     popup.className = 'popup-panel visible';
@@ -370,29 +378,18 @@ function showGenitivPopup(event, wordIdx) {
     popup.onmouseenter = function() { clearTimeout(stemPopupTimer); };
     popup.onmouseleave = function() { scheduleStemPopupHide(); };
 
-    var html = '<div class="variations-title" style="font-size:1em;margin-bottom:6px;">Genitiv-Suffixe (Wessen?)</div>';
-    html += '<div style="font-size:0.8em;color:#666;margin-bottom:10px;text-align:center;">Aktuell: <b>' + owner.genitive + '</b> (' + owner.meaning + ')</div>';
+    var html = '<div class="variations-title" style="font-size:1em;margin-bottom:6px;">Genitiv-Endungen (Wessen?)</div>';
 
     html += '<table class="pe-table">';
-    html += '<tr><th>Substantiv</th><th>Suffix</th><th>Genitiv-Form</th><th>Bedeutung</th></tr>';
-
-    // Show all noun owners (filter out pronouns)
-    word.possessive.owners.forEach(function(o, idx) {
-        var isActive = (idx === selectedOwner);
-        var rowClass = isActive ? ' class="pe-active"' : '';
-        html += '<tr' + rowClass + '>';
-        html += '<td class="pe-person">' + o.stem + '</td>';
-        html += '<td class="pe-ending">' + o.suffix + '</td>';
-        html += '<td class="pe-fullword">' + o.genitive + '</td>';
-        html += '<td class="pe-meaning">' + o.meaning + '</td>';
-        html += '</tr>';
-    });
+    html += '<tr><th>Person</th><th>Endung</th><th>Form</th></tr>';
+    html += '<tr><td class="pe-person">1.Sg (mein)</td><td class="pe-ending">-(i)m</td><td class="pe-fullword">benim</td></tr>';
+    html += '<tr><td class="pe-person">2.Sg (dein)</td><td class="pe-ending">-(i)n</td><td class="pe-fullword">senin</td></tr>';
+    html += '<tr><td class="pe-person">3.Sg (sein/ihr)</td><td class="pe-ending">-(n)' + vGross + 'n</td><td class="pe-fullword">onun</td></tr>';
+    html += '<tr><td class="pe-person">1.Pl (unser)</td><td class="pe-ending">-(i)m</td><td class="pe-fullword">bizim</td></tr>';
+    html += '<tr><td class="pe-person">2.Pl (euer)</td><td class="pe-ending">-(i)n</td><td class="pe-fullword">sizin</td></tr>';
+    html += '<tr><td class="pe-person">3.Pl (ihr)</td><td class="pe-ending">-lar' + vGross + 'n</td><td class="pe-fullword">onlar\u0131n</td></tr>';
+    html += '<tr class="pe-active" style="border-top:2px solid #ddd;"><td class="pe-person">' + ownerStem + '</td><td class="pe-ending">' + nounSuffix + '</td><td class="pe-fullword">' + owner.genitive + '</td></tr>';
     html += '</table>';
-
-    // Rules summary
-    html += '<div style="margin-top:8px;padding-top:6px;border-top:1px solid #eee;font-size:0.72em;color:#888;text-align:center;">';
-    html += 'Nach Konsonant: <b>-(I)n</b> | Nach Vokal: <b>-n(I)n</b> | I = Vokalharmonie (\u0131/i/u/\u00fc)';
-    html += '</div>';
 
     popup.innerHTML = html;
     document.body.appendChild(popup);
