@@ -1105,8 +1105,6 @@ function showStemPopup(event, wordIdx) {
     popup.onmouseenter = function() { clearTimeout(stemPopupTimer); };
     popup.onmouseleave = function() { scheduleStemPopupHide(); };
     var html = '<div class="variations-title" style="font-size:1em;margin-bottom:12px;">Wort austauschen: '+word.role_de+'</div>';
-
-    // Separate alternatives into categories
     var nouns = []; var pronouns = []; var emptyOpt = null;
     if (alts) alts.forEach(function(alt, altIdx) {
         alt._idx = altIdx;
@@ -1114,8 +1112,6 @@ function showStemPopup(event, wordIdx) {
         else if (alt.meaning && alt.meaning.indexOf('Pronomen') !== -1) pronouns.push(alt);
         else nouns.push(alt);
     });
-
-    // === ROW 1: "kein Wort" + "Possessivkompositum" ===
     var hasEmpty = emptyOpt !== null;
     var hasPossessive = word.possessive ? true : false;
     if (hasEmpty || hasPossessive) {
@@ -1130,8 +1126,6 @@ function showStemPopup(event, wordIdx) {
         }
         html += '</div>';
     }
-
-    // === PRONOUNS ===
     if (pronouns.length > 0) {
         html += '<div class="group-separator">Pronomen</div><div class="variations-grid" style="gap:8px;">';
         pronouns.forEach(function(alt) {
@@ -1140,8 +1134,6 @@ function showStemPopup(event, wordIdx) {
         });
         html += '</div>';
     }
-
-    // === SUBSTANTIVES (nouns from stem_alternatives) ===
     if (nouns.length > 0) {
         var nounGroupLabel = word.role === 'Verb' ? 'Verben' : 'Substantive';
         html += '<div class="group-separator">'+nounGroupLabel+'</div><div class="variations-grid" style="gap:8px;">';
@@ -1151,8 +1143,6 @@ function showStemPopup(event, wordIdx) {
         });
         html += '</div>';
     }
-
-    // === CATEGORY GROUPS (adverb_groups) ===
     if (word.adverb_groups) {
         var groups = word.adverb_groups.groups;
         var selectedGroup = word.adverb_groups.selected_group || Object.keys(groups)[0];
@@ -1168,7 +1158,6 @@ function showStemPopup(event, wordIdx) {
         });
         html += '</div>';
     }
-
     popup.innerHTML = html;
     document.body.appendChild(popup);
     stemPopupElement = popup;
@@ -1177,22 +1166,18 @@ function showStemPopup(event, wordIdx) {
     popup.style.top = (rect.bottom + 8 + window.scrollY) + 'px';
 }
 
-// Toggle possessive compound on/off
 function togglePossessive(wordIdx) {
     var word = currentSentence.words[wordIdx];
     if (!word.possessive) return;
     if (word.possessive.active) {
-        // Deactivate possessive - restore to normal noun
         word.possessive.active = false;
-        // Restore to first non-empty stem alternative
         if (word.stem_alternatives && word.stem_alternatives.length > 1) {
-            var alt = word.stem_alternatives[1]; // first non-empty
+            var alt = word.stem_alternatives[1];
             word.stem = alt.stem;
             word.full_word = alt.full_word;
             word.meaning = alt.meaning;
         }
     } else {
-        // Activate possessive
         applyPossessive(wordIdx, word.possessive.selected_owner || 0, word.possessive.selected_possession || 0);
         return;
     }
@@ -1200,7 +1185,6 @@ function togglePossessive(wordIdx) {
     renderSentence(currentSentence);
 }
 
-// Show owner selection popup (uses possessive.owners as options)
 function showOwnerPopup(event, wordIdx) {
     clearTimeout(stemPopupTimer);
     hideStemPopup();
@@ -1211,7 +1195,9 @@ function showOwnerPopup(event, wordIdx) {
     popup.id = 'stem-popup';
     popup.onmouseenter = function() { clearTimeout(stemPopupTimer); };
     popup.onmouseleave = function() { scheduleStemPopupHide(); };
-    var html = '<div class="variations-title" style="font-size:1em;margin-bottom:12px;">Besitzer ausw\u00e4hlen</div>';
+    var html = '<div style="display:flex;align-items:center;margin-bottom:10px;">';
+    html += '<div onclick="showStemPopupForWord('+wordIdx+')" style="cursor:pointer;padding:4px 10px;background:#f5f5f5;border-radius:6px;font-size:0.8em;color:#666;border:1px solid #ddd;">\u2190 Zur\u00fcck</div>';
+    html += '<div class="variations-title" style="font-size:1em;margin:0 0 0 12px;">Besitzer</div></div>';
     html += '<div class="variations-grid" style="gap:6px;">';
     word.possessive.owners.forEach(function(o, oIdx) {
         var isActive = word.possessive.selected_owner === oIdx ? ' active' : '';
@@ -1226,7 +1212,6 @@ function showOwnerPopup(event, wordIdx) {
     popup.style.top = (rect.bottom + 8 + window.scrollY) + 'px';
 }
 
-// Show possession selection popup (uses possessive.possessions as options)
 function showPossessionPopup(event, wordIdx) {
     clearTimeout(stemPopupTimer);
     hideStemPopup();
@@ -1237,7 +1222,9 @@ function showPossessionPopup(event, wordIdx) {
     popup.id = 'stem-popup';
     popup.onmouseenter = function() { clearTimeout(stemPopupTimer); };
     popup.onmouseleave = function() { scheduleStemPopupHide(); };
-    var html = '<div class="variations-title" style="font-size:1em;margin-bottom:12px;">Besitz ausw\u00e4hlen</div>';
+    var html = '<div style="display:flex;align-items:center;margin-bottom:10px;">';
+    html += '<div onclick="showStemPopupForWord('+wordIdx+')" style="cursor:pointer;padding:4px 10px;background:#f5f5f5;border-radius:6px;font-size:0.8em;color:#666;border:1px solid #ddd;">\u2190 Zur\u00fcck</div>';
+    html += '<div class="variations-title" style="font-size:1em;margin:0 0 0 12px;">Besitz</div></div>';
     html += '<div class="variations-grid" style="gap:6px;">';
     word.possessive.possessions.forEach(function(p, pIdx) {
         var isActive = word.possessive.selected_possession === pIdx ? ' active' : '';
