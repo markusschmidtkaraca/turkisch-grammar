@@ -542,6 +542,17 @@ function renderSentence(sentence) {
     html += '</div>';
     html += '</div></div>';
     html += '</div>'; // close harmony-row
+    // Display full sentence
+    var fullSentence = '';
+    sentence.words.forEach(function(w) {
+        if (w.full_word && !w._hiddenByPredicative) {
+            if (fullSentence) fullSentence += ' ';
+            fullSentence += w.full_word;
+        }
+    });
+    if (fullSentence) {
+        html += '<div class="full-sentence">' + fullSentence + '</div>';
+    }
     html += '<div class="section-title">\ud83d\udcdd Satzglieder &amp; Morphologie</div>';
     html += '<p class="hint-text">\ud83d\udca1 Klicke auf Suffixe, Subjekt, oder Verneinungs-Button</p>';
     html += '<div class="sentence-container">';
