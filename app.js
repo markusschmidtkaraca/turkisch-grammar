@@ -629,9 +629,9 @@ function renderSentence(sentence) {
         if (word.possessive && word.possessive.active) {
             var owner = word.possessive.owners[word.possessive.selected_owner];
             var possession = word.possessive.possessions[word.possessive.selected_possession];
-            html += '<div class="stem-box'+stemClickClass+'"'+stemClickAttr+'><div class="morph-text">'+highlightVowels(owner.stem,'stem')+'</div><div class="morph-label">Besitzer</div></div>';
+            html += '<div class="stem-box clickable-stem" onmouseenter="showOwnerPopup(event,'+wordIdx+')" onmouseleave="scheduleStemPopupHide()"><div class="morph-text">'+highlightVowels(owner.stem,'stem')+'</div><div class="morph-label">Besitzer</div></div>';
             html += '<div class="connector">+</div><div class="suffix-box" onmouseenter="showGenitivPopup(event,'+wordIdx+')" onmouseleave="scheduleStemPopupHide()" style="cursor:pointer;"><div class="morph-text">'+highlightVowels(owner.suffix)+'</div><div class="morph-label">Genitiv</div></div>';
-            html += '<div class="connector">+</div><div class="stem-box'+stemClickClass+'"'+stemClickAttr+'><div class="morph-text">'+highlightVowels(possession.stem,'stem')+'</div><div class="morph-label">Besitz</div></div>';
+            html += '<div class="connector">+</div><div class="stem-box clickable-stem" onmouseenter="showPossessionPopup(event,'+wordIdx+')" onmouseleave="scheduleStemPopupHide()"><div class="morph-text">'+highlightVowels(possession.stem,'stem')+'</div><div class="morph-label">Besitz</div></div>';
             // Plural suffix (between stem and possessive suffix) - toggleable
             var plActive2 = word._plural ? true : false;
             var plText2 = '\u2014';
@@ -1126,7 +1126,7 @@ function showStemPopup(event, wordIdx) {
         }
         if (hasPossessive) {
             var possActive = (word.possessive && word.possessive.active) ? ' active' : '';
-            html += '<div class="variation-card'+possActive+'" onclick="applyPossessive('+wordIdx+','+((word.possessive&&word.possessive.selected_owner)||0)+','+((word.possessive&&word.possessive.selected_possession)||0)+');hideStemPopup();" style="min-width:140px;padding:8px;border-color:#90caf9;background:#e3f2fd;"><div class="var-word" style="font-size:0.9em;">Possessivkompositum</div><div class="var-meaning" style="font-size:0.65em;">Besitzer + Besitz</div></div>';
+            html += '<div class="variation-card'+possActive+'" onclick="togglePossessive('+wordIdx+');hideStemPopup();" style="min-width:140px;padding:8px;border-color:#90caf9;background:#e3f2fd;"><div class="var-word" style="font-size:0.9em;">Possessivkompositum</div><div class="var-meaning" style="font-size:0.65em;">Besitzer + Besitz</div></div>';
         }
         html += '</div>';
     }
@@ -1169,24 +1169,81 @@ function showStemPopup(event, wordIdx) {
         html += '</div>';
     }
 
-    // === POSSESSIVE COMPOUND (when active, show Besitzer/Besitz selection) ===
-    if (word.possessive && word.possessive.active) {
-        html += '<div class="group-separator">Possessivkompositum</div>';
-        html += '<div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;">';
-        html += '<div style="flex:1;min-width:120px;"><div style="font-size:0.7em;color:#666;text-align:center;margin-bottom:4px;">BESITZER</div><div class="variations-grid" style="gap:6px;">';
-        word.possessive.owners.forEach(function(o, oIdx) {
-            var isActive = word.possessive.selected_owner === oIdx;
-            html += '<div class="variation-card'+(isActive?' active':'')+'" onclick="applyPossessive('+wordIdx+','+oIdx+','+word.possessive.selected_possession+')" style="min-width:80px;max-width:120px;padding:6px;"><div style="font-size:0.9em;font-weight:bold;">'+o.genitive+'</div><div style="font-size:0.65em;color:#777;">'+o.meaning+'</div></div>';
-        });
-        html += '</div></div>';
-        html += '<div style="flex:1;min-width:120px;"><div style="font-size:0.7em;color:#666;text-align:center;margin-bottom:4px;">BESITZ</div><div class="variations-grid" style="gap:6px;">';
-        word.possessive.possessions.forEach(function(p, pIdx) {
-            var isActive = word.possessive.selected_possession === pIdx;
-            html += '<div class="variation-card'+(isActive?' active':'')+'" onclick="applyPossessive('+wordIdx+','+word.possessive.selected_owner+','+pIdx+')" style="min-width:80px;max-width:120px;padding:6px;"><div style="font-size:0.9em;font-weight:bold;">'+p.possessed+'</div><div style="font-size:0.65em;color:#777;">'+p.meaning+'</div></div>';
-        });
-        html += '</div></div></div>';
-    }
+    popup.innerHTML = html;
+    document.body.appendChild(popup);
+    stemPopupElement = popup;
+    var rect = event.target.closest('.stem-box').getBoundingClientRect();
+    popup.style.left = Math.max(10, rect.left - 50) + 'px';
+    popup.style.top = (rect.bottom + 8 + window.scrollY) + 'px';
+}
 
+// Toggle possessive compound on/off
+function togglePossessive(wordIdx) {
+    var word = currentSentence.words[wordIdx];
+    if (!word.possessive) return;
+    if (word.possessive.active) {
+        // Deactivate possessive - restore to normal noun
+        word.possessive.active = false;
+        // Restore to first non-empty stem alternative
+        if (word.stem_alternatives && word.stem_alternatives.length > 1) {
+            var alt = word.stem_alternatives[1]; // first non-empty
+            word.stem = alt.stem;
+            word.full_word = alt.full_word;
+            word.meaning = alt.meaning;
+        }
+    } else {
+        // Activate possessive
+        applyPossessive(wordIdx, word.possessive.selected_owner || 0, word.possessive.selected_possession || 0);
+        return;
+    }
+    hideStemPopup();
+    renderSentence(currentSentence);
+}
+
+// Show owner selection popup (uses possessive.owners as options)
+function showOwnerPopup(event, wordIdx) {
+    clearTimeout(stemPopupTimer);
+    hideStemPopup();
+    var word = currentSentence.words[wordIdx];
+    if (!word || !word.possessive) return;
+    var popup = document.createElement('div');
+    popup.className = 'popup-panel visible';
+    popup.id = 'stem-popup';
+    popup.onmouseenter = function() { clearTimeout(stemPopupTimer); };
+    popup.onmouseleave = function() { scheduleStemPopupHide(); };
+    var html = '<div class="variations-title" style="font-size:1em;margin-bottom:12px;">Besitzer ausw\u00e4hlen</div>';
+    html += '<div class="variations-grid" style="gap:6px;">';
+    word.possessive.owners.forEach(function(o, oIdx) {
+        var isActive = word.possessive.selected_owner === oIdx ? ' active' : '';
+        html += '<div class="variation-card'+isActive+'" onclick="applyPossessive('+wordIdx+','+oIdx+','+word.possessive.selected_possession+');hideStemPopup();" style="min-width:80px;max-width:130px;padding:8px;"><div class="var-word" style="font-size:1em;">'+o.genitive+'</div><div class="var-meaning" style="font-size:0.7em;">'+o.meaning+'</div></div>';
+    });
+    html += '</div>';
+    popup.innerHTML = html;
+    document.body.appendChild(popup);
+    stemPopupElement = popup;
+    var rect = event.target.closest('.stem-box').getBoundingClientRect();
+    popup.style.left = Math.max(10, rect.left - 50) + 'px';
+    popup.style.top = (rect.bottom + 8 + window.scrollY) + 'px';
+}
+
+// Show possession selection popup (uses possessive.possessions as options)
+function showPossessionPopup(event, wordIdx) {
+    clearTimeout(stemPopupTimer);
+    hideStemPopup();
+    var word = currentSentence.words[wordIdx];
+    if (!word || !word.possessive) return;
+    var popup = document.createElement('div');
+    popup.className = 'popup-panel visible';
+    popup.id = 'stem-popup';
+    popup.onmouseenter = function() { clearTimeout(stemPopupTimer); };
+    popup.onmouseleave = function() { scheduleStemPopupHide(); };
+    var html = '<div class="variations-title" style="font-size:1em;margin-bottom:12px;">Besitz ausw\u00e4hlen</div>';
+    html += '<div class="variations-grid" style="gap:6px;">';
+    word.possessive.possessions.forEach(function(p, pIdx) {
+        var isActive = word.possessive.selected_possession === pIdx ? ' active' : '';
+        html += '<div class="variation-card'+isActive+'" onclick="applyPossessive('+wordIdx+','+word.possessive.selected_owner+','+pIdx+');hideStemPopup();" style="min-width:80px;max-width:130px;padding:8px;"><div class="var-word" style="font-size:1em;">'+p.possessed+'</div><div class="var-meaning" style="font-size:0.7em;">'+p.meaning+'</div></div>';
+    });
+    html += '</div>';
     popup.innerHTML = html;
     document.body.appendChild(popup);
     stemPopupElement = popup;
