@@ -615,12 +615,21 @@ function renderSentence(sentence) {
             html += '<div class="stem-box'+stemClickClass+'"'+stemClickAttr+'><div class="morph-text">'+highlightVowels(owner.stem,'stem')+'</div><div class="morph-label">Besitzer</div></div>';
             html += '<div class="connector">+</div><div class="suffix-box" onmouseenter="showGenitivPopup(event,'+wordIdx+')" onmouseleave="scheduleStemPopupHide()" style="cursor:pointer;"><div class="morph-text">'+highlightVowels(owner.suffix)+'</div><div class="morph-label">Genitiv</div></div>';
             html += '<div class="connector">+</div><div class="stem-box'+stemClickClass+'"'+stemClickAttr+'><div class="morph-text">'+highlightVowels(possession.stem,'stem')+'</div><div class="morph-label">Besitz</div></div>';
-            // Plural suffix (between stem and possessive suffix)
-            if (word._plural) {
+            // Plural suffix (between stem and possessive suffix) - toggleable
+            var plActive2 = word._plural ? true : false;
+            var plText2 = '\u2014';
+            if (plActive2) {
                 var plLastV2 = getLastVowel(possession.stem);
-                var plSuffix2 = ('a\u0131ou'.indexOf(plLastV2) !== -1) ? 'lar' : 'ler';
-                html += '<div class="connector">+</div><div class="suffix-box" style="background:#e3f2fd;border-color:#64b5f6;"><div class="morph-text">'+highlightVowels(plSuffix2)+'</div><div class="morph-label">Plural</div></div>';
+                var plSfx2 = ('a\u0131ou'.indexOf(plLastV2) !== -1) ? 'lar' : 'ler';
+                plText2 = highlightVowels(plSfx2);
             }
+            var plStyle2 = plActive2 ? 'background:#e3f2fd;border-color:#64b5f6;' : 'background:#e3f2fd;border-color:#64b5f6;opacity:0.4;';
+            html += '<div class="connector">+</div>';
+            html += '<div class="suffix-box clickable" style="'+plStyle2+'" onclick="event.stopPropagation();togglePlural('+wordIdx+')">';
+            html += '<div class="morph-text">'+plText2+'</div>';
+            html += '<div class="morph-label">Plural</div>';
+            html += '<div class="morph-description">'+(plActive2 ? '-lar/-ler' : 'Singular')+'</div>';
+            html += '</div>';
             html += '<div class="connector">+</div><div class="suffix-box" onmouseenter="showPossessivPopup(event,'+wordIdx+')" onmouseleave="scheduleStemPopupHide()" style="cursor:pointer;"><div class="morph-text">'+highlightVowels(possession.suffix)+'</div><div class="morph-label">Possessiv</div></div>';
         } else {
             html += '<div class="stem-box'+stemClickClass+'"'+stemClickAttr+'><div class="morph-text">'+stemDisplay+'</div><div class="morph-label">'+(isEmpty?'hinzuf\u00fcgen':'Stamm')+'</div></div>';
