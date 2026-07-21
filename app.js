@@ -593,6 +593,11 @@ function renderSentence(sentence) {
                 html += '<div class="word-meaning">'+word.meaning+'</div>';
             } else if (word._plural && word.stem && word.role !== 'Verb' && word.role !== 'Adjektiv') {
                 // Show noun with plural suffix included in full word
+                if (word.possessive && word.possessive.active) {
+                    // word.full_word already has plural+possessive form
+                    html += '<div class="word-text">'+highlightVowels(word.full_word,'stem')+'</div>';
+                    html += '<div class="word-meaning">'+word.meaning+' (Plural)</div>';
+                } else {
                 var plV = getLastVowel(word.stem);
                 var plSfx = ('a\u0131ou'.indexOf(plV) !== -1) ? 'lar' : 'ler';
                 var pluralStem = word.stem + plSfx;
@@ -607,6 +612,7 @@ function renderSentence(sentence) {
                 }
                 html += '<div class="word-text">'+highlightVowels(pluralFullWord,'stem')+'</div>';
                 html += '<div class="word-meaning">'+word.meaning+' (Plural)</div>';
+                }
             } else {
                 html += '<div class="word-text">'+highlightVowels(word.full_word,'stem')+'</div>';
                 html += '<div class="word-meaning">'+word.meaning+'</div>';
@@ -1092,15 +1098,50 @@ function showStemPopup(event, wordIdx) {
     hideStemPopup();
     var word = currentSentence.words[wordIdx];
     var alts = word.stem_alternatives;
-    if ((!alts || alts.length === 0) && !word.adverb_groups) return;
+    if ((!alts || alts.length === 0) && !word.adverb_groups && !word.possessive) return;
     var popup = document.createElement('div');
     popup.className = 'popup-panel visible';
     popup.id = 'stem-popup';
     popup.onmouseenter = function() { clearTimeout(stemPopupTimer); };
     popup.onmouseleave = function() { scheduleStemPopupHide(); };
     var html = '<div class="variations-title" style="font-size:1em;margin-bottom:12px;">Wort austauschen: '+word.role_de+'</div>';
-    var nouns = []; var pronouns = [];
-    if (alts) alts.forEach(function(alt, altIdx) { alt._idx = altIdx; if (alt.meaning && alt.meaning.indexOf('Pronomen') !== -1) pronouns.push(alt); else nouns.push(alt); });
+
+    // Separate alternatives into categories
+    var nouns = []; var pronouns = []; var emptyOpt = null;
+    if (alts) alts.forEach(function(alt, altIdx) {
+        alt._idx = altIdx;
+        if (!alt.stem && !alt.full_word) emptyOpt = alt;
+        else if (alt.meaning && alt.meaning.indexOf('Pronomen') !== -1) pronouns.push(alt);
+        else nouns.push(alt);
+    });
+
+    // === ROW 1: "kein Wort" + "Possessivkompositum" ===
+    var hasEmpty = emptyOpt !== null;
+    var hasPossessive = word.possessive ? true : false;
+    if (hasEmpty || hasPossessive) {
+        html += '<div style="display:flex;gap:8px;justify-content:center;margin-bottom:12px;">';
+        if (hasEmpty) {
+            var emptyActive = (!word.full_word || word.full_word === '') ? ' active' : '';
+            html += '<div class="variation-card'+emptyActive+'" onclick="applyStemAlternative('+wordIdx+','+emptyOpt._idx+');hideStemPopup();" style="min-width:100px;padding:8px;"><div class="var-word" style="font-size:0.9em;">(kein Wort)</div><div class="var-meaning" style="font-size:0.65em;">weglassen</div></div>';
+        }
+        if (hasPossessive) {
+            var possActive = (word.possessive && word.possessive.active) ? ' active' : '';
+            html += '<div class="variation-card'+possActive+'" onclick="applyPossessive('+wordIdx+','+((word.possessive&&word.possessive.selected_owner)||0)+','+((word.possessive&&word.possessive.selected_possession)||0)+');hideStemPopup();" style="min-width:140px;padding:8px;border-color:#90caf9;background:#e3f2fd;"><div class="var-word" style="font-size:0.9em;">Possessivkompositum</div><div class="var-meaning" style="font-size:0.65em;">Besitzer + Besitz</div></div>';
+        }
+        html += '</div>';
+    }
+
+    // === PRONOUNS ===
+    if (pronouns.length > 0) {
+        html += '<div class="group-separator">Pronomen</div><div class="variations-grid" style="gap:8px;">';
+        pronouns.forEach(function(alt) {
+            var isActive = alt.stem === word.stem ? ' active' : '';
+            html += '<div class="variation-card'+isActive+'" onclick="applyStemAlternative('+wordIdx+','+alt._idx+');hideStemPopup();" style="min-width:80px;max-width:120px;padding:8px;border-color:#90caf9;background:#e3f2fd;"><div class="var-word" style="font-size:1em;">'+alt.full_word+'</div><div class="var-meaning" style="font-size:0.7em;">'+alt.meaning+'</div></div>';
+        });
+        html += '</div>';
+    }
+
+    // === SUBSTANTIVES (nouns from stem_alternatives) ===
     if (nouns.length > 0) {
         var nounGroupLabel = word.role === 'Verb' ? 'Verben' : 'Substantive';
         html += '<div class="group-separator">'+nounGroupLabel+'</div><div class="variations-grid" style="gap:8px;">';
@@ -1110,14 +1151,8 @@ function showStemPopup(event, wordIdx) {
         });
         html += '</div>';
     }
-    if (pronouns.length > 0) {
-        html += '<div class="group-separator">Pronomen</div><div class="variations-grid" style="gap:8px;">';
-        pronouns.forEach(function(alt) {
-            var isActive = alt.stem === word.stem ? ' active' : '';
-            html += '<div class="variation-card'+isActive+'" onclick="applyStemAlternative('+wordIdx+','+alt._idx+');hideStemPopup();" style="min-width:100px;max-width:140px;padding:8px;border-color:#90caf9;background:#e3f2fd;"><div class="var-word" style="font-size:1em;">'+alt.full_word+'</div><div class="var-meaning" style="font-size:0.7em;">'+alt.meaning+'</div></div>';
-        });
-        html += '</div>';
-    }
+
+    // === CATEGORY GROUPS (adverb_groups) ===
     if (word.adverb_groups) {
         var groups = word.adverb_groups.groups;
         var selectedGroup = word.adverb_groups.selected_group || Object.keys(groups)[0];
@@ -1129,26 +1164,29 @@ function showStemPopup(event, wordIdx) {
         html += '<div class="variations-grid" style="gap:6px;">';
         items.forEach(function(item) {
             var isActive = item.stem === word.stem ? ' active' : '';
-            html += '<div class="variation-card'+isActive+'" onclick="applyAdverb('+wordIdx+',\''+item.stem.replace(/'/g,"\\\'")+'\''+',\''+item.full_word.replace(/'/g,"\\\'")+'\''+',\''+item.meaning.replace(/'/g,"\\\'")+'\''+');hideStemPopup();" style="min-width:90px;max-width:130px;padding:6px;"><div class="var-word" style="font-size:0.95em;">'+item.full_word+'</div><div class="var-meaning" style="font-size:0.65em;">'+item.meaning+'</div></div>';
+            html += '<div class="variation-card'+isActive+'" onclick="applyAdverb('+wordIdx+',\''+item.stem.replace(/'/g,"\\'")+'\',\''+item.full_word.replace(/'/g,"\\'")+'\',\''+item.meaning.replace(/'/g,"\\'")+'\');hideStemPopup();" style="min-width:90px;max-width:130px;padding:6px;"><div class="var-word" style="font-size:0.95em;">'+item.full_word+'</div><div class="var-meaning" style="font-size:0.65em;">'+item.meaning+'</div></div>';
         });
         html += '</div>';
     }
-    if (word.possessive) {
+
+    // === POSSESSIVE COMPOUND (when active, show Besitzer/Besitz selection) ===
+    if (word.possessive && word.possessive.active) {
         html += '<div class="group-separator">Possessivkompositum</div>';
         html += '<div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;">';
         html += '<div style="flex:1;min-width:120px;"><div style="font-size:0.7em;color:#666;text-align:center;margin-bottom:4px;">BESITZER</div><div class="variations-grid" style="gap:6px;">';
         word.possessive.owners.forEach(function(o, oIdx) {
-            var isActive = word.possessive.active && word.possessive.selected_owner === oIdx;
+            var isActive = word.possessive.selected_owner === oIdx;
             html += '<div class="variation-card'+(isActive?' active':'')+'" onclick="applyPossessive('+wordIdx+','+oIdx+','+word.possessive.selected_possession+')" style="min-width:80px;max-width:120px;padding:6px;"><div style="font-size:0.9em;font-weight:bold;">'+o.genitive+'</div><div style="font-size:0.65em;color:#777;">'+o.meaning+'</div></div>';
         });
         html += '</div></div>';
         html += '<div style="flex:1;min-width:120px;"><div style="font-size:0.7em;color:#666;text-align:center;margin-bottom:4px;">BESITZ</div><div class="variations-grid" style="gap:6px;">';
         word.possessive.possessions.forEach(function(p, pIdx) {
-            var isActive = word.possessive.active && word.possessive.selected_possession === pIdx;
+            var isActive = word.possessive.selected_possession === pIdx;
             html += '<div class="variation-card'+(isActive?' active':'')+'" onclick="applyPossessive('+wordIdx+','+word.possessive.selected_owner+','+pIdx+')" style="min-width:80px;max-width:120px;padding:6px;"><div style="font-size:0.9em;font-weight:bold;">'+p.possessed+'</div><div style="font-size:0.65em;color:#777;">'+p.meaning+'</div></div>';
         });
         html += '</div></div></div>';
     }
+
     popup.innerHTML = html;
     document.body.appendChild(popup);
     stemPopupElement = popup;
@@ -1156,7 +1194,6 @@ function showStemPopup(event, wordIdx) {
     popup.style.left = Math.max(10, rect.left - 50) + 'px';
     popup.style.top = (rect.bottom + 8 + window.scrollY) + 'px';
 }
-
 function showSuffixPopup(event, wordIdx, suffixIdx, isClickable) {
     clearTimeout(stemPopupTimer); hideStemPopup();
     var word = currentSentence.words[wordIdx];
