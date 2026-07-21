@@ -902,6 +902,11 @@ function togglePlural(wordIdx) {
     } else {
         word._pluralSuffix = '';
     }
+    // If possessive is active, rebuild the full word with plural + possessive
+    if (word.possessive && word.possessive.active) {
+        applyPossessive(wordIdx, word.possessive.selected_owner, word.possessive.selected_possession);
+        return;
+    }
     hideStemPopup();
     renderSentence(currentSentence);
 }
@@ -1018,7 +1023,14 @@ function applyPossessive(wordIdx, ownerIdx, possessionIdx) {
         var plV = harmonizeKlein(lastV);
         possSuffix = 'l' + plV + 'r' + vGross;
     }
-    possForm = possStem + possSuffix;
+    // If plural is active, insert plural suffix between stem and possessive
+    if (word._plural) {
+        var plLastV3 = getLastVowel(possStem);
+        var plSfx3 = ('a\u0131ou'.indexOf(plLastV3) !== -1) ? 'lar' : 'ler';
+        possForm = possStem + plSfx3 + possSuffix;
+    } else {
+        possForm = possStem + possSuffix;
+    }
     word.full_word = owner.genitive + ' ' + possForm;
     word.stem = owner.genitive + ' ' + possStem;
     word.meaning = possession.meaning + ' ' + owner.meaning;
