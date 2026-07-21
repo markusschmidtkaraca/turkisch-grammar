@@ -615,12 +615,18 @@ function renderSentence(sentence) {
             html += '<div class="stem-box'+stemClickClass+'"'+stemClickAttr+'><div class="morph-text">'+highlightVowels(owner.stem,'stem')+'</div><div class="morph-label">Besitzer</div></div>';
             html += '<div class="connector">+</div><div class="suffix-box" onmouseenter="showGenitivPopup(event,'+wordIdx+')" onmouseleave="scheduleStemPopupHide()" style="cursor:pointer;"><div class="morph-text">'+highlightVowels(owner.suffix)+'</div><div class="morph-label">Genitiv</div></div>';
             html += '<div class="connector">+</div><div class="stem-box'+stemClickClass+'"'+stemClickAttr+'><div class="morph-text">'+highlightVowels(possession.stem,'stem')+'</div><div class="morph-label">Besitz</div></div>';
+            // Plural suffix (between stem and possessive suffix)
+            if (word._plural) {
+                var plLastV2 = getLastVowel(possession.stem);
+                var plSuffix2 = ('a\u0131ou'.indexOf(plLastV2) !== -1) ? 'lar' : 'ler';
+                html += '<div class="connector">+</div><div class="suffix-box" style="background:#e3f2fd;border-color:#64b5f6;"><div class="morph-text">'+highlightVowels(plSuffix2)+'</div><div class="morph-label">Plural</div></div>';
+            }
             html += '<div class="connector">+</div><div class="suffix-box" onmouseenter="showPossessivPopup(event,'+wordIdx+')" onmouseleave="scheduleStemPopupHide()" style="cursor:pointer;"><div class="morph-text">'+highlightVowels(possession.suffix)+'</div><div class="morph-label">Possessiv</div></div>';
         } else {
             html += '<div class="stem-box'+stemClickClass+'"'+stemClickAttr+'><div class="morph-text">'+stemDisplay+'</div><div class="morph-label">'+(isEmpty?'hinzuf\u00fcgen':'Stamm')+'</div></div>';
         }
         // Plural suffix for nouns (optional, toggleable) - not for pronouns
-        if (!isEmpty && !isPronoun && word.role !== 'Verb' && word.role !== 'Adjektiv' && word.role !== 'Adverb' && word.stem) {
+        if (!isEmpty && !isPronoun && !(word.possessive && word.possessive.active) && word.role !== 'Verb' && word.role !== 'Adjektiv' && word.role !== 'Adverb' && word.stem) {
             var pluralActive = word._plural ? true : false;
             var pluralText = '\u2014';
             if (pluralActive) {
@@ -805,16 +811,39 @@ function rebuildVerbWord(word) {
     var tense = word.current_tense || 'di';
     var person = getCurrentPerson();
     if (word._negated) {
-        var negation = word.negation;
-        if (negation && negation.forms) {
-            var tenseFormIdx = 0;
-            if (tense === 'iyor') tenseFormIdx = 1;
-            else if (tense === 'ir') tenseFormIdx = 2;
-            else if (tense === 'ecek') tenseFormIdx = 3;
-            var negForm = negation.forms[Math.min(tenseFormIdx, negation.forms.length-1)];
-            word.full_word = negForm.full_word;
-            word._neg_suffix = negForm.neg_suffix || '-me';
-            if (word.suffixes.length > 0) word.suffixes[0].suffix = negForm.tense_suffix || negForm.suffix;
+        // Build negated form dynamically from current stem
+        var stem = word.stem;
+        var lastV = getLastVowel(stem);
+        var negVowel = harmonizeKlein(lastV); // a or e
+        var negSuffix = (negVowel === 'a') ? 'ma' : 'me';
+        word._neg_suffix = '-' + negSuffix;
+        // Build the negated verb form based on tense
+        var negStem = stem + negSuffix;
+        if (tense === 'di') {
+            word.full_word = negStem + 'di';
+            if (word.suffixes.length > 0) word.suffixes[0].suffix = '-di';
+        } else if (tense === 'iyor') {
+            // -me + -yor -> -mi + yor (vowel drop)
+            negStem = stem + negVowel.replace('a','a').replace('e','i');
+            word._neg_suffix = '-m' + (negVowel === 'a' ? 'a' : 'i');
+            word.full_word = stem + (negVowel === 'a' ? 'mı' : 'mi') + 'yor';
+            if (word.suffixes.length > 0) word.suffixes[0].suffix = '-yor';
+        } else if (tense === 'ir') {
+            word.full_word = negStem + 'z';
+            word._neg_suffix = '-' + negSuffix + 'z';
+            if (word.suffixes.length > 0) word.suffixes[0].suffix = '';
+        } else if (tense === 'ecek') {
+            word.full_word = negStem + 'yecek';
+            if (word.suffixes.length > 0) word.suffixes[0].suffix = '-yecek';
+        } else if (tense === 'mis') {
+            word.full_word = negStem + 'miş';
+            if (word.suffixes.length > 0) word.suffixes[0].suffix = '-miş';
+        } else if (tense === 'meli') {
+            word.full_word = negStem + 'meli';
+            if (word.suffixes.length > 0) word.suffixes[0].suffix = '-meli';
+        } else {
+            word.full_word = negStem + 'di';
+            if (word.suffixes.length > 0) word.suffixes[0].suffix = '-di';
         }
     } else {
         if (word.conjugation && word.conjugation[tense] && word.conjugation[tense][person]) {
@@ -949,9 +978,45 @@ function applyPossessive(wordIdx, ownerIdx, possessionIdx) {
     var poss = word.possessive;
     poss.active = true; poss.selected_owner = ownerIdx; poss.selected_possession = possessionIdx;
     var owner = poss.owners[ownerIdx]; var possession = poss.possessions[possessionIdx];
-    word.full_word = owner.genitive + ' ' + possession.possessed;
-    word.stem = owner.genitive + ' ' + possession.stem;
+    // Determine person from owner to compute correct possessive suffix
+    var ownerPerson = '3sg'; // default
+    var ownerStem = owner.stem.toLowerCase();
+    if (ownerStem === 'ben' || owner.genitive === 'benim') ownerPerson = '1sg';
+    else if (ownerStem === 'sen' || owner.genitive === 'senin') ownerPerson = '2sg';
+    else if (ownerStem === 'o' || owner.genitive === 'onun') ownerPerson = '3sg';
+    else if (ownerStem === 'biz' || owner.genitive === 'bizim') ownerPerson = '1pl';
+    else if (ownerStem === 'siz' || owner.genitive === 'sizin') ownerPerson = '2pl';
+    else if (ownerStem === 'onlar' || owner.genitive === 'onların') ownerPerson = '3pl';
+    // Compute possessive suffix for the determined person
+    var possStem = possession.stem;
+    var lastV = getLastVowel(possStem);
+    var lastChar = possStem[possStem.length - 1];
+    var endsInVowel = allVowelsStr.indexOf(lastChar) !== -1;
+    var vGross = harmonizeGross(lastV);
+    var possForm = possStem;
+    var possSuffix = '';
+    if (ownerPerson === '1sg') {
+        possSuffix = endsInVowel ? 'm' : vGross + 'm';
+    } else if (ownerPerson === '2sg') {
+        possSuffix = endsInVowel ? 'n' : vGross + 'n';
+    } else if (ownerPerson === '3sg') {
+        possSuffix = endsInVowel ? 's' + vGross : vGross;
+    } else if (ownerPerson === '1pl') {
+        possSuffix = endsInVowel ? 'm' + vGross + 'z' : vGross + 'm' + vGross + 'z';
+    } else if (ownerPerson === '2pl') {
+        possSuffix = endsInVowel ? 'n' + vGross + 'z' : vGross + 'n' + vGross + 'z';
+    } else if (ownerPerson === '3pl') {
+        var plV = harmonizeKlein(lastV);
+        possSuffix = 'l' + plV + 'r' + vGross;
+    }
+    possForm = possStem + possSuffix;
+    word.full_word = owner.genitive + ' ' + possForm;
+    word.stem = owner.genitive + ' ' + possStem;
     word.meaning = possession.meaning + ' ' + owner.meaning;
+    // Store the computed suffix for display
+    word.possessive._computedPossSuffix = '-' + possSuffix;
+    word.possessive._computedPossForm = possForm;
+    word.possessive._ownerPerson = ownerPerson;
     renderSentence(currentSentence);
 }
 
